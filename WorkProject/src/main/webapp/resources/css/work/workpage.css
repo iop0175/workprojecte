@@ -181,18 +181,107 @@
     border-radius: 15px;
     transition: all 0.3s;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.product .company_img_file{
+.product_logo {
+    height: 55px;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.product_comname {
+    margin-top: 5px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+}
+.product_job {
+    margin-top: 5px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+}
+.product_jobex {
+    margin-top: 5px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+}
+.product_img {
+    height: 150px;
+    width: 100%;
+
+}
+.img_img {
     display: block;
+    margin: 0 auto;
+    width: 100%;
 }
-.product:hover .company_img_file_hover{
+.logo_imgfile{
     display: block;
+    margin: 0 auto;
+    height: 100%;  
 }
-.product:hover .company_img_file{
+.product:hover .porduct_data {
     display: none;
 }
-.product .company_img_file_hover{
+.product_hover {
     display: none;
+    color: white;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+.product:hover .product_hover {
+    display: block;
+    background-color: rgba(71, 133, 203);
+}
+.product_hover_logo {
+    height: 130px;
+    margin-top: 10px;
+}
+.product_hover_comname {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.porduct_hover_comex{
+    text-align: center;
+    word-wrap: break-word;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.product_hover_job {
+    width: 250px;
+    margin: 0 auto;
+    word-wrap: break-word;
+    text-align: center;
+}
+.product_hover_jobex {
+    text-align: center;
+    margin-top: 30px;
+}
+.product_hovert_img {
+    position: relative;
+    top: -150px;
+    height: 630px;
+}
+.hover_logo_imgfile {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+}
+.hover_img_img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    opacity: 0.2;
 }
 .product_not {
     border: 2px solid;
@@ -212,20 +301,7 @@
     font-weight: bold;
     font-size: 25px;
 }
-.logo_img_file {
-    width: 60%;   
-}
 
-.logo_img{
-    text-align: center;
-    padding: 10px;
-}
-.company_img_file{
-    width: 100%;   
-}
-.company_img_file_hover{
-    object-fit: cover;
-}
 .area_bar {
     width: 100%;
     height: 400px;

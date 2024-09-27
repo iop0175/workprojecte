@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +29,7 @@
 				</span> <input type="text">
 			</div>
 			<div class="login">
-				<a href="login">로그인</a>
-				|
-				<a href="signup">회원가입</a>
+				<a href="login">로그인</a> | <a href="signup">회원가입</a>
 			</div>
 		</div>
 		<div class="navbar">
@@ -105,39 +104,50 @@
 		<div class="title">기업 공고(WW Partners)</div>
 		<div class="product_list">
 			<div class="vip_col">
-				<div class="logo_img">
-					<img class="logo_img_file"
-						src=""
-						alt="">
+				<div class="product_hover_logo">
+					<img class="hover_logo_imgfile" alt="" src="">
 				</div>
-				<div class="logo">1</div>
-				<div class="product_main">2</div>
-			</div>
-			<div class="product">
-				<div class="logo_img">
-					<img class="logo_img_file"
-						src=""
-						alt="">
-				</div>
-				<div class="logo">1</div>
-				<div class="product_main">2</div>
-				<div class="company_img">
-					<img class="company_img_file"
-						src=""
-						alt=""> <img class="company_img_file_hover"
-						src=""
-						alt="">
+				<div class="product_hover_comname">${item.comname}</div>
+				<div class="porduct_hover_comex">sasa</div>
+				<div class="product_hover_job">${item.workname}</div>
+				<div class="product_hover_jobex">${needswork}a</div>
+				<div class="product_hovert_img">
+					<img class="hover_img_img" src="">
 				</div>
 			</div>
-			<div class="product">3</div>
-			<div class="product">4</div>
-			<div class="product">5</div>
-			<div class="product">6</div>
-			<div class="product">7</div>
+			<c:forEach var="item" items="${list}">
+				<div class="product">
+					<div class="porduct_data">
+						<div class="product_logo">
+							<img class="logo_imgfile" alt="" src="">
+						</div>
+						<div class="product_comname">${item.comname}</div>
+						<div class="product_job">${item.workname}</div>
+						<div class="product_jobex">${needswork}</div>
+						<div class="product_img">
+							<img class="img_img" src="">
+						</div>
+					</div>
+					<div class="product_hover">
+						<div class="product_hover_logo">
+							<img class="hover_logo_imgfile" alt="" src="">
+						</div>
+						<div class="product_hover_comname">${item.comname}</div>
+						<div class="porduct_hover_comex">sasa</div>
+						<div class="product_hover_job">${item.workname}</div>
+						<div class="product_hover_jobex">${needswork}a</div>
+						<div class="product_hovert_img">
+							<img class="hover_img_img" src="">
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+			<c:if test="${list.size() >6}">
 			<div class="product_not">8</div>
 			<div class="product_not">9</div>
 			<div class="product_not">0</div>
 			<div class="product_not">0</div>
+			</c:if>
 		</div>
 		<div class="title">기업 공고</div>
 		<div class="product_list">
