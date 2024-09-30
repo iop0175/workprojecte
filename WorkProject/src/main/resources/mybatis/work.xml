@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="work">
+
+	<select id="worklist" resultType="work">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM work
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 10
+	</select>
+
+</mapper>
