@@ -12,5 +12,16 @@
 		)
 		WHERE ROWNUM &lt;= 10
 	</select>
-
+	<select id="searchList" resultType="work">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM WORK
+		WHERE WORKNAME LIKE '%' || #{item} || '%'
+		OR NEEDSWORK LIKE '%' || #{item} || '%'
+		OR COMNAME LIKE '%' || #{item} || '%'
+		ORDER BY DBMS_RANDOM.VALUE
+		)
+		WHERE ROWNUM &lt;= 12
+	</select>
 </mapper>

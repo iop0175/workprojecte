@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css/main.css">
 <link rel="stylesheet" href="/resources/css/login/login.css">
 <script src="/resources/js/nav.js"></script>
+<script src="/resources/js/login/login.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -92,13 +93,13 @@
 			<div>
 				<form action="" method="post" class="loginBox">
 					<h1>LOGIN</h1>
-					<div class="logininer">
-						<label>ID</label> <input class="loginInput" type="text" name="id">
+					<div class="logininer" id="idbox">
+						<label>ID</label> <input class="loginInput" type="text" name="id" id="id">
 					</div>
-					<div class="logininer">
-						<label>PW</label> <input class="loginInput" type="password" name="password">
+					<div class="logininer" id="pwbox">
+						<label>PW</label> <input class="loginInput" type="password" name="password" id="password">
 					</div>
-					<button class="submit">Login</button>
+					<button type="button" class="submit" id="submit">Login</button>
 				</form>
 				<div id="rootBox">
 					<a href="">비밀번호 찾기</a> | <a href="/signup">회원가입</a>

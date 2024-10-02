@@ -7,5 +7,15 @@
 		SELECT *
 		FROM MYDATE WHERE id = #{id}
 	</select>
-
+	<select id="idCheck" resultType="mydate">
+		SELECT *
+		FROM MYDATE WHERE id = #{id}
+	</select>
+	<insert id="signup">
+		INSERT INTO MYDATE (id,password) VALUES (#{id},#{password})
+	</insert>
+	<select id="loginCheck" resultType="mydate">
+		SELECT *
+		FROM MYDATE WHERE id = #{id} and password = #{password}
+	</select>
 </mapper>

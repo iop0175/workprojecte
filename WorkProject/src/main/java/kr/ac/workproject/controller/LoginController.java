@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.workproject.model.Mydate;
 import kr.ac.workproject.service.MyadteService;
@@ -21,17 +22,16 @@ public class LoginController {
 	String login() {
 		return path + "login";
 	}
-
-	@PostMapping("/login")
-	String login(Mydate item, HttpSession session) {
-		if (service.login(item)) {
+	@ResponseBody
+	@GetMapping("/login_check/{id}/{password}")
+	String login_check(@PathVariable String id,@PathVariable String password,Mydate item ,HttpSession session) {
+		item.setId(id);
+		item.setPassword(password);
+		if (service.loginCheck(item)) {
 			session.setAttribute("mydate", item);
-			return "redirect:work";
-		} else {
-			return "redirect:login";
-		}
+			return "ok";
+		}return "fail";
 	}
-
 	@GetMapping("/logout")
 	String logout(HttpSession session) {
 		session.invalidate();
@@ -42,9 +42,21 @@ public class LoginController {
 	String signup() {
 		return path + "signup";
 	}
+	@PostMapping("/signup")
+	String signup(Mydate item) {
+		service.signup(item);
+		return "redirect:.";
+	}
 	@GetMapping("/mypage/{id}")
 	String mypage(@PathVariable String id) {
 		return path +"mypage";
 		
+	}
+	@ResponseBody
+	@GetMapping("id_check/{id}")
+	String idCheck(@PathVariable String id) {
+		if (service.idCheck(id)) {
+			return "ok";
+		}return "fail";
 	}
 }

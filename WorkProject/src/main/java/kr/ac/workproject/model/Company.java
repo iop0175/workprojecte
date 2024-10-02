@@ -13,6 +13,7 @@ private Date comdate;
 private String stock;
 private String comlogo;
 private String comtitle;
+
 public String getComnum() {
 	return comnum;
 }

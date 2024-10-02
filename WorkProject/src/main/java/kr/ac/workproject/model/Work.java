@@ -9,6 +9,15 @@ private Long workpay;
 private Long maxpay;
 private Long lowpay;
 private String comname;
+private String keyword;
+public String getQuery() {
+	String query = "";
+	
+	if(keyword != null)
+		query += "&keyword=" + keyword;
+	
+	return query;
+}
 public String getComnum() {
 	return comnum;
 }

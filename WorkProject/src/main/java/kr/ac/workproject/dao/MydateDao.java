@@ -4,6 +4,11 @@ import kr.ac.workproject.model.Mydate;
 
 public interface MydateDao {
 
-	Mydate item(String id);
+
+	String idCheck(String id);
+
+	void signup(Mydate item);
+
+	Mydate loginCheck(Mydate item);
 
 }

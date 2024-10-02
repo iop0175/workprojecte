@@ -5,6 +5,7 @@ private String id;
 private String cumnum;
 private String password;
 private String comname;
+private String masterid;
 public String getId() {
 	return id;
 }
@@ -28,5 +29,11 @@ public String getComname() {
 }
 public void setComname(String comname) {
 	this.comname = comname;
+}
+public String getMasterid() {
+	return masterid;
+}
+public void setMasterid(String masterid) {
+	this.masterid = masterid;
 }
 }

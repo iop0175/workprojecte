@@ -1,35 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="javascript" href="/resources/js/work/slider.js">
+<script src="/resources/js/nav.js"></script>
+<script src="/resources/js/search.js"></script>
 <link rel="stylesheet" href="/resources/css/main.css">
-<link rel="stylesheet" href="/resources/css/login/mypage.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/work/workpage.css">
+<link rel="stylesheet" href="/resources/css/work/slider.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<title>Document</title>
+<script></script>
+
 </head>
 <body>
-	<div>
-		<div class="container">
-            <div class="header" id="nav">
-                <div class="logo"><a href="/work">workway</a></div>
-                <div class="serach_box">
-                    <span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="30"
-                            fill="currentColor"
-                            class="bi bi-search"
-                            viewbox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                        </svg>
-                    </span>
-                    <input type="text">
-                </div>
-                <c:if test="${sessionScope.mydate ==  null}">
+	<div class="container">
+		<div class="header" id="nav">
+			<div class="logo"><a href="/work">workway</a></div>
+			<div class="serach_box">
+				<span> <svg xmlns="http://www.w3.org/2000/svg" width="30"
+						height="30" fill="currentColor" class="bi bi-search"
+						viewbox="0 0 16 16">
+                                <path
+							d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+				</span> <input type="text" id="search" name="search">
+			</div>
+			<c:if test="${sessionScope.mydate ==  null}">
 			<div class="login">
 				<a href="login">로그인</a> | <a href="signup">회원가입</a>
 			</div>
@@ -39,8 +41,8 @@
 				<a href="mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a> | <a href="logout">로그아웃</a>
 			</div>
 			</c:if>
-            </div>
-            <div class="navbar" id="nav">
+		</div>
+		<div class="navbar" id="nav">
                 <div class="manu">
                     <span id="nemu">
                         <svg
@@ -140,19 +142,106 @@
                     </li>
                 </ul>
             </div>
-            <div class="main">
-                <div id="mydata">
-                    <div class="">
-                        <h1>ooo님의 정보</h1>
-                    </div>
-                    <div class="pageButton"><a href="">개인정보 수정</a></div>
-                    <div class="pageButton"><a href="">COMPANY</a></div>
-                    <div class="pageButton"><a href="">나의 경험 | 작업 경험 입력하기</a></div>
-                </div>
-            </div>
-            <div class="footer"></div>
-        </div>
-    </div>
+		<div class="main">
+			<div class="myprofile">
+				<div class="myprofile_my">나의 경력</div>
+				<div class="myprofile_work">작업 경험</div>
+				<div class="myprofile_up">다음작업 승인률 올리기</div>
+				<div class="myprofile_product">긴급 발주</div>
+			</div>
+			<div class="my_work">
+				<div id="slideShow">
+					<ul class="slides">
+						<li>
+							<div class="slide_box"></div>
+						</li>
+						<li>
+							<div class="slide_box"></div>
+						</li>
+						<li>
+							<div class="slide_box"></div>
+						</li>
+						<li>
+							<div class="slide_box"></div>
+						</li>
+						<li>
+							<div class="slide_box"></div>
+						</li>
+					</ul>
+					<p class="controller">
+						<span class="prev">&lang;</span> <span class="next">&rang;</span>
+					</p>
+				</div>
+				<script src="/resources/js/work/slide_show.js"></script>
+			</div>
+			<div class="my_ad">AD</div>
+			<div class="main_ad">AD</div>
+		</div>
+		<div class="title">기업 공고(WW Partners)</div>
+		<div class="product_list">
+			<div class="vip_col">
+				<div class="product_hover_logo">
+					<img class="hover_logo_imgfile" alt="" src="/resources/imges/${item.comname}_logo.png">
+				</div>
+				<div class="product_hover_comname">${item.comname}</div>
+				<div class="porduct_hover_comex">sasa</div>
+				<div class="product_hover_job">${item.workname}</div>
+				<div class="product_hover_jobex">${needswork}a</div>
+				<div class="product_hovert_img">
+					<img class="hover_img_img" src="">
+				</div>
+			</div>
+			<c:forEach var="item" items="${list}">
+				<div class="product">
+					<div class="porduct_data">
+						<div class="product_logo">
+							<img class="logo_imgfile" alt="" src="/resources/imges/${item.comname}_logo.png">
+						</div>
+						<div class="product_comname">${item.comname}</div>
+						<div class="product_job">${item.workname}</div>
+						<div class="product_jobex">${needswork}</div>
+						<div class="product_img">
+							<img class="img_img" src="/resources/imges/${item.comname}_title.png">
+						</div>
+					</div>
+					<div class="product_hover">
+						<div class="product_hover_logo">
+							<img class="hover_logo_imgfile" alt="" src="/resources/imges/${item.comname}_logo.png">
+						</div>
+						<div class="product_hover_comname">${item.comname}</div>
+						<div class="porduct_hover_comex">sasa</div>
+						<div class="product_hover_job">${item.workname}</div>
+						<div class="product_hover_jobex">${needswork}</div>
+						<div class="product_hovert_img">
+							<img class="hover_img_img" src="/resources/imges/${item.comname}_title.png">
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+			<c:if test="${list.size() >6}">
+			<div class="product_not">8</div>
+			<div class="product_not">9</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			</c:if>
+		</div>
+		<div class="title">기업 공고</div>
+		<div class="product_list">
+			<div class="product_not">8</div>
+			<div class="product_not">9</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+			<div class="product_not">0</div>
+		</div>
+		<div class="footer"></div>
+	</div>
 	</div>
 </body>
 </html>

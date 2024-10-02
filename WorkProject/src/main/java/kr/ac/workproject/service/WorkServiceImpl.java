@@ -16,5 +16,10 @@ public class WorkServiceImpl implements WorkService {
 		
 		return dao.workList();
 	}
+	@Override
+	public List<Work> searchList(String item) {
+		// TODO Auto-generated method stub
+		return dao.searchList(item);
+	}
 
 }

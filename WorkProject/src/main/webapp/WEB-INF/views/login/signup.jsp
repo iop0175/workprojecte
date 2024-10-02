@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/main.css">
-<link rel="stylesheet" href="/resources/css/login/mypage.css">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/resources/css/main.css">
+<link rel="stylesheet" href="/resources/css/login/login.css">
+<script src="/resources/js/nav.js"></script>
+<script src="/resources/js/login/signup.js"></script>
 </head>
 <body>
-	<div>
-		<div class="container">
+    <div class="container">
             <div class="header" id="nav">
-                <div class="logo"><a href="/work">workway</a></div>
+                <div class="logo">workwat</div>
                 <div class="serach_box">
                     <span>
                         <svg
@@ -29,16 +31,11 @@
                     </span>
                     <input type="text">
                 </div>
-                <c:if test="${sessionScope.mydate ==  null}">
-			<div class="login">
-				<a href="login">로그인</a> | <a href="signup">회원가입</a>
-			</div>
-			</c:if>
-			<c:if test="${sessionScope.mydate !=  null}">
-			<div class="login">
-				<a href="mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a> | <a href="logout">로그아웃</a>
-			</div>
-			</c:if>
+                <div class="login">
+                    <a href="login">로그인</a>
+                    |
+                    <a href="signup">회원가입</a>
+                </div>
             </div>
             <div class="navbar" id="nav">
                 <div class="manu">
@@ -111,48 +108,55 @@
                 </span>
                 <ul >
                     <li>
-                        <a href="/company/major">대기업 공고</a>
+                        <a href="company/major">대기업 공고</a>
                     </li>
                     <li>
-                        <a href="/company/small">중소기업 공고</a>
+                        <a href="company/small">중소기업 공고</a>
                     </li>
                     <li>
-                        <a href="/company/area">지역별 공고</a>
+                        <a href="company/area">지역별 공고</a>
                     </li>
                     <li>
-                        <a href="/company/field">분야별 공고</a>
+                        <a href="company/field">분야별 공고</a>
                     </li>
                 </ul>
                 <ul>
                     <li>
-                        <a href="/private/area">지역별 공고</a>
+                        <a href="private/area">지역별 공고</a>
                     </li>
                     <li>
-                        <a href="/private/field">분야별 공고</a>
+                        <a href="private/field">분야별 공고</a>
                     </li>
                 </ul>
                 <ul >
                     <li>
-                        <a href="/order">발주 확인</a>
+                        <a href="order">발주 확인</a>
                     </li>
                     <li>
-                        <a href="/myorder">나의 발주</a>
+                        <a href="myorder">나의 발주</a>
                     </li>
                 </ul>
             </div>
             <div class="main">
-                <div id="mydata">
-                    <div class="">
-                        <h1>ooo님의 정보</h1>
-                    </div>
-                    <div class="pageButton"><a href="">개인정보 수정</a></div>
-                    <div class="pageButton"><a href="">COMPANY</a></div>
-                    <div class="pageButton"><a href="">나의 경험 | 작업 경험 입력하기</a></div>
+                <div >
+                    <form action="" method="post" class="loginBox">
+                        <h1>SIGN UP</h1>
+                        <div class="logininer">
+                            <label>ID</label>
+                            <input class="loginInput" type="text" name="id" id="id">
+                            
+                        </div>
+                        <button type="button" id="idCK">중복확인</button>
+                        <div class="logininer">
+                            <label>PW</label>
+                            <input class="loginInput" type="password" name="password">
+                        </div>
+                        <button type="button" class="submit" id="submit">Signup</button>
+                    </form>
                 </div>
             </div>
             <div class="footer"></div>
         </div>
     </div>
-	</div>
 </body>
 </html>

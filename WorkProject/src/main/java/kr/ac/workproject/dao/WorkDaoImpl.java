@@ -15,5 +15,10 @@ public class WorkDaoImpl implements WorkDao {
 
 		return sql.selectList("work.worklist");
 	}
+	@Override
+	public List<Work> searchList(String item) {
+		// TODO Auto-generated method stub
+		return sql.selectList("work.searchList",item);
+	}
 
 }

@@ -8,4 +8,6 @@ public interface WorkDao {
 
 	List<Work> workList();
 
+	List<Work> searchList(String item);
+
 }

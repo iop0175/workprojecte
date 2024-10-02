@@ -8,6 +8,8 @@ public interface WorkService {
 
 	List<Work> workList();
 
+	List<Work> searchList(String item);
+
 
 
 

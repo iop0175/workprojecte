@@ -4,6 +4,12 @@ import kr.ac.workproject.model.Mydate;
 
 public interface MyadteService {
 
-	boolean login(Mydate item);
+
+	boolean idCheck(String id);
+
+	void signup(Mydate item);
+
+	boolean loginCheck(Mydate item);
+
 
 }
