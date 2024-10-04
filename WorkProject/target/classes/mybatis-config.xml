@@ -2,13 +2,18 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
 	<typeAliases>
-		<typeAlias type="kr.ac.workproject.model.Work" alias="work"/>
-		<typeAlias type="kr.ac.workproject.model.Mydate" alias="mydate"/>
+		<typeAlias type="kr.ac.workproject.model.Work" alias="work" />
+		<typeAlias type="kr.ac.workproject.model.Mydate"
+			alias="mydate" />
 	</typeAliases>
-		
+
 	<mappers>
-		<mapper resource="mybatis/work.xml"/>
-		<mapper resource="mybatis/mydate.xml"/>
+		<mapper resource="mybatis/work.xml" />
+		<mapper resource="mybatis/mydate.xml" />
 	</mappers>
+	
 </configuration>

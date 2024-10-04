@@ -7,7 +7,8 @@
 		SELECT *
 		FROM (
 		SELECT *
-		FROM work
+		FROM
+		comwork
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
 		WHERE ROWNUM &lt;= 10
@@ -16,12 +17,26 @@
 		SELECT *
 		FROM (
 		SELECT *
-		FROM WORK
+		FROM
+		comwork
 		WHERE WORKNAME LIKE '%' || #{item} || '%'
-		OR NEEDSWORK LIKE '%' || #{item} || '%'
+		OR NEEDSWORK LIKE '%'
+		|| #{item} || '%'
 		OR COMNAME LIKE '%' || #{item} || '%'
-		ORDER BY DBMS_RANDOM.VALUE
+		ORDER BY
+		DBMS_RANDOM.VALUE
 		)
 		WHERE ROWNUM &lt;= 12
 	</select>
+	<insert id="add">
+		INSERT INTO COMWORK (
+        work_num, work_name, work_detailed, work_person, work_region, 
+        work_field, work_date, work_pay, com_num, com_name, work_plan, work_requirements
+    ) 
+    VALUES (
+        SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson}, #{workRegion},
+        #{workField}, #{workDateAsDate}, #{workPay}, #{comNum}, #{comName}, #{workPlan}, #{workRequirements}
+    )
+	</insert>
+
 </mapper>

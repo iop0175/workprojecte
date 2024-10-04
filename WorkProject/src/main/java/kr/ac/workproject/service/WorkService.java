@@ -10,6 +10,8 @@ public interface WorkService {
 
 	List<Work> searchList(String item);
 
+	void add(Work workItem);
+
 
 
 

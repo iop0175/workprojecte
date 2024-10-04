@@ -160,28 +160,28 @@
 					<div class="porduct_data">
 						<div class="product_logo">
 							<img class="logo_imgfile" alt=""
-								src="/resources/imges/${item.comname}_logo.png">
+								src="/resources/imges/${item.comName}_logo.png">
 						</div>
-						<div class="product_comname">${item.comname}</div>
-						<div class="product_job">${item.workname}</div>
-						<div class="product_jobex">${needswork}</div>
+						<div class="product_comname">${item.comName}</div>
+						<div class="product_job">${item.workName}</div>
+						<div class="product_jobex">${item.workDetailed}</div>
 						<div class="product_img">
 							<img class="img_img"
-								src="/resources/imges/${item.comname}_title.png">
+								src="/resources/imges/${item.comName}_title.png">
 						</div>
 					</div>
 					<div class="product_hover">
 						<div class="product_hover_logo">
 							<img class="hover_logo_imgfile" alt=""
-								src="/resources/imges/${item.comname}_logo.png">
+								src="/resources/imges/${item.comName}_logo.png">
 						</div>
-						<div class="product_hover_comname">${item.comname}</div>
+						<div class="product_hover_comname">${item.comName}</div>
 						<div class="porduct_hover_comex">sasa</div>
-						<div class="product_hover_job">${item.workname}</div>
-						<div class="product_hover_jobex">${needswork}</div>
+						<div class="product_hover_job">${item.workName}</div>
+						<div class="product_hover_jobex">${item.workDetailed}</div>
 						<div class="product_hovert_img">
 							<img class="hover_img_img"
-								src="/resources/imges/${item.comname}_title.png">
+								src="/resources/imges/${item.comName}_title.png">
 						</div>
 					</div>
 				</div>
@@ -199,11 +199,11 @@
 				<div class="product_not">
 					<div class="n_product_logo">
 						<img class="n_logo_imgfile" alt=""
-							src="/resources/imges/${item.comname}_logo.png">
+							src="/resources/imges/${item.comName}_logo.png">
 					</div>
-					<div class="n_product_comname">${item.comname}</div>
-					<div class="n_product_job">${item.workname}</div>
-					<div class="n_product_jobex">${needswork}</div>
+					<div class="n_product_comname">${item.comName}</div>
+					<div class="n_product_job">${item.workName}</div>
+					<div class="n_product_jobex">${item.workDetailed}</div>
 				</div>
 			</c:forEach>
 		</div>

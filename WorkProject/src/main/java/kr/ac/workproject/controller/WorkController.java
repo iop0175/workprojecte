@@ -1,6 +1,9 @@
 package kr.ac.workproject.controller;
 
+
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,5 +35,18 @@ String search(@PathVariable String item, Model model) {
 	List<Work> searchlist = service.searchList(item);
 	model.addAttribute("searchlist", searchlist);
 	return path+"work";		
+}
+@GetMapping("/add")
+String add() {
+	return path+"add";
+}
+@PostMapping("/add")
+String add(Work workItem,HttpSession session) {
+	Mydate mydate=(Mydate) session.getAttribute("mydate"); 
+	workItem.setComName(mydate.getComName());
+	workItem.setComNum(mydate.getComNum());
+	System.out.println(workItem.getWorkDate());
+	service.add(workItem);
+	return "redirect:../work";
 }
 }

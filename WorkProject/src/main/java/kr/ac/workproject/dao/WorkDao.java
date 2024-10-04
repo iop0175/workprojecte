@@ -10,4 +10,6 @@ public interface WorkDao {
 
 	List<Work> searchList(String item);
 
+	void add(Work workItem);
+
 }

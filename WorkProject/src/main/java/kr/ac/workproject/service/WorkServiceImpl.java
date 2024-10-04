@@ -21,5 +21,10 @@ public class WorkServiceImpl implements WorkService {
 		// TODO Auto-generated method stub
 		return dao.searchList(item);
 	}
+	@Override
+	public void add(Work workItem) {
+		 dao.add(workItem);
+		
+	}
 
 }

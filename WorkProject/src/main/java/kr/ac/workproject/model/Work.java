@@ -1,15 +1,81 @@
 package kr.ac.workproject.model;
 
+
+import java.time.LocalDate;
+import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Work {
-private String comnum;
-private String worknum;
-private String workname;
-private String needswork;
-private Long workpay;
-private Long maxpay;
-private Long lowpay;
-private String comname;
+private String workNum;
+private String workName;
+private String workDetailed;
+private String workPerson;
+private String workRegion;
+private String workField;
+@DateTimeFormat(pattern = "yyyy-MM-dd")
+private LocalDate workDate;
+private String workPay;
+private String comNum;
+private String comName;
 private String keyword;
+private String workPlan;
+private String workRequirements;
+public String getWorkNum() {
+	return workNum;
+}
+public void setWorkNum(String workNum) {
+	this.workNum = workNum;
+}
+public String getWorkName() {
+	return workName;
+}
+public void setWorkName(String workName) {
+	this.workName = workName;
+}
+public String getWorkDetailed() {
+	return workDetailed;
+}
+public void setWorkDetailed(String workDetailed) {
+	this.workDetailed = workDetailed;
+}
+public String getWorkPerson() {
+	return workPerson;
+}
+public void setWorkPerson(String workPerson) {
+	this.workPerson = workPerson;
+}
+public String getWorkRegion() {
+	return workRegion;
+}
+public void setWorkRegion(String workRegion) {
+	this.workRegion = workRegion;
+}
+public String getWorkField() {
+	return workField;
+}
+public void setWorkField(String workField) {
+	this.workField = workField;
+}
+
+public String getWorkPay() {
+	return workPay;
+}
+public void setWorkPay(String workPay) {
+	this.workPay = workPay;
+}
+public String getComNum() {
+	return comNum;
+}
+public void setComNum(String comNum) {
+	this.comNum = comNum;
+}
+public String getComName() {
+	return comName;
+}
+public void setComName(String comName) {
+	this.comName = comName;
+}
 public String getQuery() {
 	String query = "";
 	
@@ -18,52 +84,29 @@ public String getQuery() {
 	
 	return query;
 }
-public String getComnum() {
-	return comnum;
+public String getWorkPlan() {
+	return workPlan;
 }
-public void setComnum(String comnum) {
-	this.comnum = comnum;
+public void setWorkPlan(String workPlan) {
+	this.workPlan = workPlan;
 }
-public String getWorknum() {
-	return worknum;
+public String getWorkRequirements() {
+	return workRequirements;
 }
-public void setWorknum(String worknum) {
-	this.worknum = worknum;
+public void setWorkRequirements(String workRequirements) {
+	this.workRequirements = workRequirements;
 }
-public String getWorkname() {
-	return workname;
+
+public Date getWorkDateAsDate() {
+    return (workDate != null) ? Date.valueOf(workDate) : null;
 }
-public void setWorkname(String workname) {
-	this.workname = workname;
+
+public void setWorkDate(LocalDate workDate) {
+    this.workDate = workDate;
 }
-public String getNeedswork() {
-	return needswork;
+
+public LocalDate getWorkDate() {
+    return workDate;
 }
-public void setNeedswork(String needswork) {
-	this.needswork = needswork;
-}
-public Long getWorkpay() {
-	return workpay;
-}
-public void setWorkpay(Long workpay) {
-	this.workpay = workpay;
-}
-public Long getMaxpay() {
-	return maxpay;
-}
-public void setMaxpay(Long maxpay) {
-	this.maxpay = maxpay;
-}
-public Long getLowpay() {
-	return lowpay;
-}
-public void setLowpay(Long lowpay) {
-	this.lowpay = lowpay;
-}
-public String getComname() {
-	return comname;
-}
-public void setComname(String comname) {
-	this.comname = comname;
-}
+
 }
