@@ -40,6 +40,14 @@ window.addEventListener("load", () => {
             if (selectedCity) {
                 selectedCity.element.style.fill = "green";
                 input.value = selectedCity.name;
+                const area_city =selectedCity.name;
+                const count = document.getElementById("count")
+                fetch(`/company/area/${area_city}`,{method:"GET",}).then(res => res.text()).then(result => {
+                    if (result < 1) {
+                        count.innerHTML = "0";
+                    } else
+                    count.innerHTML = `${result}`;
+                });
             }
         });
     });

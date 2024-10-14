@@ -7,13 +7,18 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="kr.ac.workproject.model.Work" alias="work" />
+		<typeAlias type="kr.ac.workproject.model.VipWork"
+			alias="vipwork" />
 		<typeAlias type="kr.ac.workproject.model.Mydate"
 			alias="mydate" />
+		<typeAlias type="kr.ac.workproject.model.Company"
+			alias="company" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/work.xml" />
 		<mapper resource="mybatis/mydate.xml" />
+		<mapper resource="mybatis/company.xml" />
 	</mappers>
-	
+
 </configuration>

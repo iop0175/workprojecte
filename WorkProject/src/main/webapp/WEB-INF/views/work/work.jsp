@@ -143,50 +143,50 @@
 		</div>
 		<div class="title">기업 공고(WW Partners)</div>
 		<div class="product_list">
+
 			<div class="vip_col">
 				<div class="product_hover_logo">
-					<img class="hover_logo_imgfile" alt="" src="">
+					<img class="hover_logo_imgfile" alt=""
+						src="/resources/imges/${vipcol.comName}_logo.png">
 				</div>
-				<div class="product_hover_comname"></div>
-				<div class="porduct_hover_comex">sasa</div>
-				<div class="product_hover_job"></div>
-				<div class="product_hover_jobex"></div>
+				<div class="product_hover_comname">${vipcol.comName}</div>
+				<div class="porduct_hover_comex">${vipcol.comName}</div>
+				<div class="product_hover_job">${vipcol.workName}</div>
+				<div class="product_hover_jobex">${vipcol.workDetailed}</div>
 				<div class="product_hovert_img">
-					<img class="hover_img_img" src="">
+					<img class="hover_img_img" src="/upload/${vipcol.benerImgName}">
 				</div>
 			</div>
-			<c:forEach var="item" items="${list}">
+			<c:forEach var="item" items="${viplist}">
 				<div class="product">
 					<div class="porduct_data">
 						<div class="product_logo">
 							<img class="logo_imgfile" alt=""
-								src="/resources/imges/${item.comName}_logo.png">
+								src="/upload/${item.comName}_logo.png">
 						</div>
 						<div class="product_comname">${item.comName}</div>
 						<div class="product_job">${item.workName}</div>
 						<div class="product_jobex">${item.workDetailed}</div>
 						<div class="product_img">
-							<img class="img_img"
-								src="/resources/imges/${item.comName}_title.png">
+							<img class="img_img" src="/upload/${item.mainImgName}">
 						</div>
 					</div>
 					<div class="product_hover">
 						<div class="product_hover_logo">
 							<img class="hover_logo_imgfile" alt=""
-								src="/resources/imges/${item.comName}_logo.png">
+								src="/upload/${item.comName}_logo.png">
 						</div>
 						<div class="product_hover_comname">${item.comName}</div>
 						<div class="porduct_hover_comex">sasa</div>
 						<div class="product_hover_job">${item.workName}</div>
 						<div class="product_hover_jobex">${item.workDetailed}</div>
 						<div class="product_hovert_img">
-							<img class="hover_img_img"
-								src="/resources/imges/${item.comName}_title.png">
+							<img class="hover_img_img" src="/upload/${item.benerImgName}">
 						</div>
 					</div>
 				</div>
 			</c:forEach>
-			<c:if test="${list.size() >6}">
+			<c:if test="${viplist.size() >6}">
 				<div class="product_not">8</div>
 				<div class="product_not">9</div>
 				<div class="product_not">0</div>
@@ -195,7 +195,7 @@
 		</div>
 		<div class="title">기업 공고</div>
 		<div class="product_list">
-			<c:forEach items="${searchlist}" var="item">
+			<c:forEach items="${list}" var="item">
 				<div class="product_not">
 					<div class="n_product_logo">
 						<img class="n_logo_imgfile" alt=""

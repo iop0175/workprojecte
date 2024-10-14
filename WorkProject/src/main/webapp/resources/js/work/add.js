@@ -44,3 +44,12 @@ function updateProgress() {
         }
     }
 }
+window.addEventListener("load",()=>{
+    document.getElementById("wwbutton").addEventListener("click",e=>{
+        document.getElementById("wwbutton").style.backgroundColor = "rgb(106, 106, 225)";
+        document.getElementById("wwbutton").style.Color = "white";
+        document.getElementById("vipMain").style.display= "flex";
+        document.getElementById("vipBener").style.display= "flex";
+        document.getElementById("conteant").action ="vipadd"
+    })
+})

@@ -91,10 +91,11 @@
 		</div>
 		<div class="main">
 			<div id="add_box">
-				<form method="post" id="conteant">
-					<div>
-						<h1>작업등록</h1>
-					</div>
+				<div id="wwhead">
+					<div><h1>작업등록</h1></div>
+					<div id="wwbutton">WW Partners</div>
+				</div>
+				<form method="post" id="conteant" enctype="multipart/form-data">
 					<div><p>작업명</p><input type="text" name="workName" oninput="updateProgress()" data-target="muge_comname" class="essential"></div>
 					<div><p>작업설명</p><input type="text" name="workDetailed" oninput="updateProgress()" data-target="muge_comex" class="essential"></div>
 					<div><p>예상 필요인원</p><input type="text" name="workPerson" oninput="updateProgress()" data-target="muge_personnel" class="essential"></div>
@@ -104,6 +105,8 @@
 					<div><p>예상작업일정</p><input type="date" name="workDate"></div>
 					<div><p>필요조건</p><input type="text" name="workRequirements"></div>
 					<div><p>예상단가</p><input type="text" name="workPay"></div>
+					<div id="vipMain"><p>메인이미지</p><input type="file" name="mainImg"></div>
+					<div id="vipBener"><p>베너이미지</p><input type="file" name="benerImg"></div>
 				</form>
 			</div>
 			<div id="side_nav">
@@ -119,7 +122,6 @@
 							<div id="muge_personnel">예상필요인원</div>
 							<div id="muge_region">작업위치</div>
 							<div id="muge_workplan">작업계획서</div>
-							
 						</div>
 					</div>
 				</div>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.workproject.dao.WorkDao;
+import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 @Service
 public class WorkServiceImpl implements WorkService {
@@ -25,6 +26,16 @@ public class WorkServiceImpl implements WorkService {
 	public void add(Work workItem) {
 		 dao.add(workItem);
 		
+	}
+	@Override
+	public List<VipWork> workVipList() {
+		// TODO Auto-generated method stub
+		return dao.WorkVipList();
+	}
+	@Override
+	public void vipadd(VipWork vipwork) {
+		// TODO Auto-generated method stub
+		dao.vipadd(vipwork);
 	}
 
 }

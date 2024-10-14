@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 @Repository
 public class WorkDaoImpl implements WorkDao {
@@ -23,6 +24,16 @@ public class WorkDaoImpl implements WorkDao {
 	@Override
 	public void add(Work workItem) {
 		sql.insert("work.add",workItem);
+		
+	}
+	@Override
+	public List<VipWork> WorkVipList() {
+		// TODO Auto-generated method stub
+		return sql.selectList("work.vipList");
+	}
+	@Override
+	public void vipadd(VipWork vipwork) {
+		sql.insert("work.vipadd",vipwork);
 		
 	}
 

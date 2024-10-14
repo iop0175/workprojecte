@@ -13,7 +13,7 @@ private Date comdate;
 private String stock;
 private String comlogo;
 private String comtitle;
-
+private int cityCount;
 public String getComnum() {
 	return comnum;
 }
@@ -73,5 +73,11 @@ public String getComtitle() {
 }
 public void setComtitle(String comtitle) {
 	this.comtitle = comtitle;
+}
+public int getCityCount() {
+	return cityCount;
+}
+public void setCityCount(int cityCount) {
+	this.cityCount = cityCount;
 }
 }

@@ -1,10 +1,7 @@
 package kr.ac.workproject.model;
 
 
-import java.time.LocalDate;
 import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Work {
 private String workNum;
@@ -13,8 +10,7 @@ private String workDetailed;
 private String workPerson;
 private String workRegion;
 private String workField;
-@DateTimeFormat(pattern = "yyyy-MM-dd")
-private LocalDate workDate;
+private Date workDate;
 private String workPay;
 private String comNum;
 private String comName;
@@ -96,17 +92,11 @@ public String getWorkRequirements() {
 public void setWorkRequirements(String workRequirements) {
 	this.workRequirements = workRequirements;
 }
-
-public Date getWorkDateAsDate() {
-    return (workDate != null) ? Date.valueOf(workDate) : null;
+public Date getWorkDate() {
+	return workDate;
 }
-
-public void setWorkDate(LocalDate workDate) {
-    this.workDate = workDate;
-}
-
-public LocalDate getWorkDate() {
-    return workDate;
+public void setWorkDate(Date workDate) {
+	this.workDate = workDate;
 }
 
 }

@@ -396,7 +396,7 @@ div::-webkit-scrollbar {
     top: 30px;
 }
 
-#conteant div{
+#conteant div:not(#vipMain,#vipBener){
     margin: 50px;
     width: 80%;
     display: flex;
@@ -483,4 +483,35 @@ div::-webkit-scrollbar {
 }
 #view{
     margin-right: 2%;
+}
+#wwbutton{
+   margin-left: auto;
+   border: 1px solid;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   border-radius: 15px;
+   width: 150px;
+   text-align: center;
+}
+#wwbutton:hover{
+    background-color: rgb(106, 106, 225);
+    transition: 0.5s;
+    color: white;
+    border: none;
+}
+#wwhead{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+#vipMain{
+    display: none;
+    text-align: center;
+}
+#vipBener{
+    margin-top: 50px;
+    display: none;
+    text-align: center;
 }

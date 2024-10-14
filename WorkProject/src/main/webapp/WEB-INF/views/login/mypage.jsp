@@ -148,6 +148,7 @@
                     <div class="pageButton"><a href="">개인정보 수정</a></div>
                     <div class="pageButton"><a href="">COMPANY</a></div>
                     <div class="pageButton"><a href="">나의 경험 | 작업 경험 입력하기</a></div>
+                    <div class="pageButton"><a href="/work/add">작업 등록하기</a></div>
                 </div>
             </div>
             <div class="footer"></div>
