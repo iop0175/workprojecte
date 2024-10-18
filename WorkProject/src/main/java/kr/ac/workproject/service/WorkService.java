@@ -17,6 +17,8 @@ public interface WorkService {
 
 	void vipadd(VipWork vipwork);
 
+	List<Work> myWork(String comName);
+
 
 
 

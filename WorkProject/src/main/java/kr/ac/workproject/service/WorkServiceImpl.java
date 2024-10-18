@@ -37,5 +37,10 @@ public class WorkServiceImpl implements WorkService {
 		// TODO Auto-generated method stub
 		dao.vipadd(vipwork);
 	}
+	@Override
+	public List<Work> myWork(String comName) {
+		// TODO Auto-generated method stub
+		return dao.myWork(comName);
+	}
 
 }

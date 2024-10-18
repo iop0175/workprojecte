@@ -5,9 +5,30 @@
 
 	<select id="cityCount" resultType="Integer">
 		SELECT
-		(SELECT COUNT(*) FROM COMWORK WHERE WORK_REGION = #{cityName}) +
-		(SELECT COUNT(*) FROM VIP_COMWORK WHERE WORK_REGION = #{cityName}) as cityCount
+		(SELECT COUNT(*) FROM
+		COMWORK WHERE WORK_REGION = #{cityName}) +
+		(SELECT COUNT(*) FROM
+		VIP_COMWORK WHERE WORK_REGION = #{cityName}) as cityCount
 		FROM dual
 	</select>
-
+	<select id="cityList" resultType="work">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM comwork
+		WHERE WORK_REGION = #{cityName}
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 10
+	</select>
+	<select id="vipcityList" resultType="vipwork">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM VIP_COMWORK
+		WHERE WORK_REGION = #{vipCityName}
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 10
+	</select>
 </mapper>

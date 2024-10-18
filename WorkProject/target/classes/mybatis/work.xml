@@ -13,6 +13,21 @@
 		)
 		WHERE ROWNUM &lt;= 10
 	</select>
+	<select id="myWork" resultType="vipwork">
+		SELECT *
+		FROM (
+		SELECT work_name, work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
+		FROM COMWORK
+		WHERE COM_NAME = #{comName}
+
+		UNION ALL
+
+		SELECT work_name, work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
+		FROM VIP_COMWORK
+		WHERE COM_NAME = #{comName}
+		)
+		WHERE ROWNUM &lt;= 4
+	</select>
 	<select id="vipList" resultType="vipwork">
 		SELECT *
 		FROM (
@@ -40,22 +55,34 @@
 	</select>
 	<insert id="add">
 		INSERT INTO COMWORK (
-        work_num, work_name, work_detailed, work_person, work_region, 
-        work_field, work_date, work_pay, com_num, com_name, work_plan, work_requirements
-    ) 
-    VALUES (
-        SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson}, #{workRegion},
-        #{workField}, #{workDate}, #{workPay}, #{comNum}, #{comName}, #{workPlan}, #{workRequirements}
-    )
+		work_num, work_name,
+		work_detailed, work_person, work_region,
+		work_field, work_date,
+		work_pay, com_num, com_name, work_plan, work_requirements
+		)
+		VALUES (
+		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson},
+		#{workRegion},
+		#{workField}, #{workDate}, #{workPay}, #{comNum},
+		#{comName},
+		#{workPlan}, #{workRequirements}
+		)
 	</insert>
 	<insert id="vipadd">
 		INSERT INTO VIP_COMWORK (
-        work_num, work_name, work_detailed, work_person, work_region, 
-        work_field, work_date, work_pay, com_num, com_name, work_plan, work_requirements,main_img_name,bener_img_name
-    ) 
-    VALUES (
-        SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson}, #{workRegion},
-        #{workField}, #{workDate}, #{workPay}, #{comNum}, #{comName}, #{workPlan}, #{workRequirements},#{mainImgName},#{benerImgName}
-    )
+		work_num, work_name,
+		work_detailed, work_person, work_region,
+		work_field, work_date,
+		work_pay, com_num, com_name, work_plan,
+		work_requirements,main_img_name,bener_img_name
+		)
+		VALUES (
+		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson},
+		#{workRegion},
+		#{workField}, #{workDate}, #{workPay}, #{comNum},
+		#{comName},
+		#{workPlan},
+		#{workRequirements},#{mainImgName},#{benerImgName}
+		)
 	</insert>
 </mapper>

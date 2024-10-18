@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
-
 import kr.ac.workproject.model.Mydate;
 import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
@@ -29,18 +29,31 @@ public class WorkController {
 	WorkService service;
 
 	@GetMapping("")
-	String work(Model model) {
+	String work(Model model,HttpSession session) {
+		Mydate mydate = (Mydate) session.getAttribute("mydate");
+		if (mydate != null) {
+			if (mydate.getComName() != null) {
+				String comName = mydate.getComName();
+				List<Work> myWork = service.myWork(comName);
+				model.addAttribute("myWork", myWork);
+			}else {
+				model.addAttribute("myWork", null);
+			}
+			
+		}
 		List<Work> list = service.workList();
 		model.addAttribute("list", list);
 		List<VipWork> Viplist = service.workVipList();
 		if (Viplist.size() > 1) {
 			VipWork item = Viplist.get(1);
 			Viplist.remove(item);
-			model.addAttribute("vipcol", item);
+			model.addAttribute("vipcol", item);	
 			model.addAttribute("viplist", Viplist);
 		}else {
 			model.addAttribute("vipcol", Viplist);
 		}
+		
+		
 		return path + "work";
 	}
 
@@ -63,6 +76,7 @@ public class WorkController {
 		Mydate mydate = (Mydate) session.getAttribute("mydate");
 		workItem.setComName(mydate.getComName());
 		workItem.setComNum(mydate.getComNum());
+		workItem.setUploadName(mydate.getId());
 		System.out.println(workItem.getWorkDate());
 		service.add(workItem);
 		return "redirect:../work";

@@ -476,3 +476,23 @@ div::-webkit-scrollbar {
 	margin: 10px;
 	font-weight: bold;
 }
+.slide_box_workname{
+	text-align: center;
+
+}
+.slide_box_workex{
+	height: 132px;
+	-webkit-line-clamp:5;
+}
+
+.slide_box_text{
+	float: right;
+}
+#nonlogin{
+	border-radius: 10px;
+	height: 298px;
+	width: 100%;
+	position: relative;
+	top: 140px;
+	left: 200px;
+}

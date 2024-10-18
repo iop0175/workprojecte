@@ -36,6 +36,11 @@ public class WorkDaoImpl implements WorkDao {
 		sql.insert("work.vipadd",vipwork);
 		
 	}
+	@Override
+	public List<Work> myWork(String comName) {
+		// TODO Auto-generated method stub
+		return sql.selectList("work.myWork", comName);
+	}
 
 
 }

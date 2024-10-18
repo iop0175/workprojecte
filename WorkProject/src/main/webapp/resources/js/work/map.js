@@ -49,6 +49,14 @@ window.addEventListener("load", () => {
                     count.innerHTML = `${result}`;
                 });
             }
+            const submit = document.getElementById("button_box").addEventListener("click",e =>{
+                fetch(`/company/area/${selectedCity.name}/viplist`,{method:"GET"},).then(res => res.text()).then(result =>{
+                    document.getElementById("vipcomwork").innerHTML = result;
+                });
+                fetch(`/company/area/${selectedCity.name}/list`,{method:"GET"},).then(res => res.text()).then(result =>{
+                    document.getElementById("comwork").innerHTML = result;
+                });
+            })
         });
     });
 });

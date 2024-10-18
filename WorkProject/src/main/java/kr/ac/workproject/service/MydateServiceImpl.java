@@ -12,8 +12,7 @@ import kr.ac.workproject.model.Mydate;
 public class MydateServiceImpl implements MyadteService {
 	@Autowired
 	MydateDao dao;
-
-
+	
 	@Override
 	public boolean idCheck(String id) {
 		if (dao.idCheck(id) == null) {

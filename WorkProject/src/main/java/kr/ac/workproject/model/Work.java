@@ -17,6 +17,34 @@ private String comName;
 private String keyword;
 private String workPlan;
 private String workRequirements;
+private Date uploadDate;
+private String uploadName;
+private Long views;
+private Long viewsCom;
+public Date getUploadDate() {
+	return uploadDate;
+}
+public void setUploadDate(Date uploadDate) {
+	this.uploadDate = uploadDate;
+}
+public String getUploadName() {
+	return uploadName;
+}
+public void setUploadName(String uploadName) {
+	this.uploadName = uploadName;
+}
+public Long getViews() {
+	return views;
+}
+public void setViews(Long views) {
+	this.views = views;
+}
+public Long getViewsCom() {
+	return viewsCom;
+}
+public void setViewsCom(Long viewsCom) {
+	this.viewsCom = viewsCom;
+}
 public String getWorkNum() {
 	return workNum;
 }
