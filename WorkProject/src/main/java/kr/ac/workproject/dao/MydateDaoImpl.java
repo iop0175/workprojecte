@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
 @Repository
 public class MydateDaoImpl implements MydateDao {
@@ -24,5 +25,10 @@ public class MydateDaoImpl implements MydateDao {
 	public Mydate loginCheck(Mydate item) {
 		return sql.selectOne("mydate.loginCheck", item);
 	}
-
+	@Override
+	public void comadd(Company item) {
+		sql.insert("mydate.comadd",item);	
+		sql.update("mydate.cominput",item);
+	}
+	
 }

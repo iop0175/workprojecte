@@ -1,5 +1,6 @@
 package kr.ac.workproject.dao;
 
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
 
 public interface MydateDao {
@@ -10,5 +11,7 @@ public interface MydateDao {
 	void signup(Mydate item);
 
 	Mydate loginCheck(Mydate item);
+
+	void comadd(Company item);
 
 }

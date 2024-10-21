@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="/resources/css/main.css">
-<link rel="stylesheet" href="/resources/css/login/mypage.css">
+<link rel="stylesheet" href="/resources/css/login/comadd.css">
+<script src="/resources/js/nav.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<div class="container">
+        <div class="container">
             <div class="header" id="nav">
-                <div class="logo"><a href="/work">workway</a></div>
+                <div class="logo">workwat</div>
                 <div class="serach_box">
                     <span>
                         <svg
@@ -29,16 +30,11 @@
                     </span>
                     <input type="text">
                 </div>
-                <c:if test="${sessionScope.mydate ==  null}">
-			<div class="login">
-				<a href="login">로그인</a> | <a href="signup">회원가입</a>
-			</div>
-			</c:if>
-			<c:if test="${sessionScope.mydate !=  null}">
-			<div class="login">
-				<a href="mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a> | <a href="logout">로그아웃</a>
-			</div>
-			</c:if>
+                <div class="login">
+                    <a href="login">로그인</a>
+                    |
+                    <a href="signup">회원가입</a>
+                </div>
             </div>
             <div class="navbar" id="nav">
                 <div class="manu">
@@ -99,7 +95,7 @@
             </div>
             <div id="navhi">
                 <span>
-                    <svg width="30" height="30" viewBox="0 0 60 60" id="cross">
+                    <svg width="30" height="30" viewbox="0 0 60 60" id="cross">
                         <path
                             style="fill:#030104;"
                             d="M47.743,41.758L33.955,26.001l13.788-15.758c2.343-2.344,2.343-6.143,0-8.486
@@ -111,49 +107,61 @@
                 </span>
                 <ul >
                     <li>
-                        <a href="/company/major">대기업 공고</a>
+                        <a href="company/major">대기업 공고</a>
                     </li>
                     <li>
-                        <a href="/company/small">중소기업 공고</a>
+                        <a href="company/small">중소기업 공고</a>
                     </li>
                     <li>
-                        <a href="/company/area">지역별 공고</a>
+                        <a href="company/area">지역별 공고</a>
                     </li>
                     <li>
-                        <a href="/company/field">분야별 공고</a>
+                        <a href="company/field">분야별 공고</a>
                     </li>
                 </ul>
                 <ul>
                     <li>
-                        <a href="/private/area">지역별 공고</a>
+                        <a href="private/area">지역별 공고</a>
                     </li>
                     <li>
-                        <a href="/private/field">분야별 공고</a>
+                        <a href="private/field">분야별 공고</a>
                     </li>
                 </ul>
                 <ul >
                     <li>
-                        <a href="/order">발주 확인</a>
+                        <a href="order">발주 확인</a>
                     </li>
                     <li>
-                        <a href="/myorder">나의 발주</a>
+                        <a href="myorder">나의 발주</a>
                     </li>
                 </ul>
             </div>
             <div class="main">
-                <div id="mydata">
-                    <div class="">
-                        <h1>ooo님의 정보</h1>
-                    </div>
-                    <div class="pageButton"><a href="">개인정보 수정</a></div>
-                    <div class="pageButton"><a href="/comadd">COMPANY</a></div>
-                    <div class="pageButton"><a href="">나의 경험 | 작업 경험 입력하기</a></div>
-                    <div class="pageButton"><a href="/work/add">작업 등록하기</a></div>
+                <div>
+                    <h1>COMPANY</h1>
                 </div>
+                <form method="post">
+                    <div>업체 등록하기</div>
+                    <div>
+                        <label for="">업체명</label><input type="text" name="comname"></div>
+                    <div>
+                        <label for="">업종</label><input type="text" name="comjob"></div>
+                    <div>
+                        <label for="">지역</label><input type="text" name="comregion"></div>
+                    <div>
+                        <label for="">대표자명</label><input type="text" name="ceoname"></div>
+                    <div>
+                        <label for="">사업자번호</label><input type="number" name="combrn"></div>
+                    <div>
+                        <label for="">설립일자</label><input type="date" name="comdate"></div>
+                    <div>
+                        <label for="">상장유무</label><input type="text" name="stock"></div>
+                    <div><label for=""></label><input type="file" name="comlogo"></div>
+                    <button>등록</button>
+                </form>
             </div>
             <div class="footer"></div>
         </div>
     </div>
-	</div>
 </body>
 </html>

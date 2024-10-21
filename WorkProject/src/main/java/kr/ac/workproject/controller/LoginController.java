@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
 import kr.ac.workproject.service.MyadteService;
 
@@ -58,5 +59,17 @@ public class LoginController {
 		if (service.idCheck(id)) {
 			return "ok";
 		}return "fail";
+	}
+	@GetMapping("/comadd")
+	String comadd() {
+		return path+"comadd";
+		
+	}
+	@PostMapping("/comadd")
+	String comadd(Company item,HttpSession session) {
+		Mydate mydate = (Mydate) session.getAttribute("mydate");
+		item.setId(mydate.getId());
+		service.comadd(item);
+		return "redirect:../";
 	}
 }

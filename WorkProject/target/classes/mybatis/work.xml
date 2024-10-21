@@ -58,14 +58,14 @@
 		work_num, work_name,
 		work_detailed, work_person, work_region,
 		work_field, work_date,
-		work_pay, com_num, com_name, work_plan, work_requirements
+		work_pay, com_num, com_name, work_plan, work_requirements,upload_date,upload_name
 		)
 		VALUES (
 		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson},
 		#{workRegion},
 		#{workField}, #{workDate}, #{workPay}, #{comNum},
 		#{comName},
-		#{workPlan}, #{workRequirements}
+		#{workPlan}, #{workRequirements},SYSDATE,#{uploadName}
 		)
 	</insert>
 	<insert id="vipadd">
@@ -74,7 +74,7 @@
 		work_detailed, work_person, work_region,
 		work_field, work_date,
 		work_pay, com_num, com_name, work_plan,
-		work_requirements,main_img_name,bener_img_name
+		work_requirements,main_img_name,bener_img_name,upload_date,upload_name
 		)
 		VALUES (
 		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson},
@@ -82,7 +82,7 @@
 		#{workField}, #{workDate}, #{workPay}, #{comNum},
 		#{comName},
 		#{workPlan},
-		#{workRequirements},#{mainImgName},#{benerImgName}
+		#{workRequirements},#{mainImgName},#{benerImgName},SYSDATE,#{uploadName}
 		)
 	</insert>
 </mapper>

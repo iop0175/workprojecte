@@ -1,5 +1,6 @@
 package kr.ac.workproject.service;
 
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
 
 public interface MyadteService {
@@ -10,6 +11,8 @@ public interface MyadteService {
 	void signup(Mydate item);
 
 	boolean loginCheck(Mydate item);
+
+	void comadd(Company item);
 
 
 }

@@ -482,7 +482,7 @@ div::-webkit-scrollbar {
 }
 .slide_box_workex{
 	height: 132px;
-	-webkit-line-clamp:5;
+	overflow: hidden;
 }
 
 .slide_box_text{

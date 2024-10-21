@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.workproject.dao.MydateDao;
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
 
 @Service
@@ -36,5 +37,11 @@ public class MydateServiceImpl implements MyadteService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void comadd(Company item) {
+		dao.comadd(item);
+		
 	}
 }

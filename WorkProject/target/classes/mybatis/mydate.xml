@@ -5,17 +5,34 @@
 
 	<select id="login" resultType="mydate">
 		SELECT *
-		FROM MYDATE WHERE id = #{id}
+		FROM MYDATE WHERE id =
+		#{id}
 	</select>
 	<select id="idCheck" resultType="mydate">
 		SELECT *
-		FROM MYDATE WHERE id = #{id}
+		FROM MYDATE WHERE id =
+		#{id}
 	</select>
 	<insert id="signup">
-		INSERT INTO MYDATE (id,password) VALUES (#{id},#{password})
+		INSERT INTO MYDATE (id,password) VALUES
+		(#{id},#{password})
 	</insert>
 	<select id="loginCheck" resultType="mydate">
 		SELECT *
-		FROM MYDATE WHERE id = #{id} and password = #{password}
+		FROM MYDATE WHERE id
+		= #{id} and password = #{password}
 	</select>
+	<insert id="comadd">
+		INSERT INTO COMPANY
+		(COMNUM,COMNAME,COMJOB,COMREGION,CEONAME,COMBRN,COMDATE,STOCK)
+		VALUES
+		(SEQ_COM.NEXTVAL,#{comname},#{comjob},#{comregion},#{ceoname},#{combrn},#{comdate},#{stock})
+	</insert>
+	<update id="cominput">
+		UPDATE MYDATE 
+		SET COM_NUM = (SELECT comnum FROM COMPANY WHERE comname = #{comname})
+		,COM_NAME = (SELECT comname FROM COMPANY WHERE comname = #{comname})
+		,MASTERID = (SELECT comname FROM COMPANY WHERE comname = #{comname})
+		WHERE id = #{id}
+	</update>
 </mapper>

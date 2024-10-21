@@ -1,6 +1,6 @@
 package kr.ac.workproject.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Company {
 private String comnum;
@@ -14,6 +14,7 @@ private String stock;
 private String comlogo;
 private String comtitle;
 private int cityCount;
+private String id;
 public String getComnum() {
 	return comnum;
 }
@@ -79,5 +80,11 @@ public int getCityCount() {
 }
 public void setCityCount(int cityCount) {
 	this.cityCount = cityCount;
+}
+public String getId() {
+	return id;
+}
+public void setId(String id) {
+	this.id = id;
 }
 }

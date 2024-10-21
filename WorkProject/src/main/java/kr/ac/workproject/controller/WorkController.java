@@ -49,8 +49,12 @@ public class WorkController {
 			Viplist.remove(item);
 			model.addAttribute("vipcol", item);	
 			model.addAttribute("viplist", Viplist);
+		}else if (Viplist.size() < 1) {
+			model.addAttribute("vipcol", null);	
+			model.addAttribute("viplist", null);
 		}else {
 			model.addAttribute("vipcol", Viplist);
+			model.addAttribute("viplist", null);
 		}
 		
 		
@@ -77,7 +81,6 @@ public class WorkController {
 		workItem.setComName(mydate.getComName());
 		workItem.setComNum(mydate.getComNum());
 		workItem.setUploadName(mydate.getId());
-		System.out.println(workItem.getWorkDate());
 		service.add(workItem);
 		return "redirect:../work";
 	}
@@ -110,6 +113,7 @@ public class WorkController {
 		}
 		vipwork.setComName(mydate.getComName());
 		vipwork.setComNum(mydate.getComNum());
+		vipwork.setUploadName(mydate.getComNum());
 		service.vipadd(vipwork);
 		return "redirect:../work";
 	}
