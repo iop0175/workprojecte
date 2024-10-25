@@ -11,7 +11,7 @@ private String ceoname;
 private Long combrn;
 private Date comdate;
 private String stock;
-private String comlogo;
+private String comLogo;
 private String comtitle;
 private int cityCount;
 private String id;
@@ -63,12 +63,6 @@ public String getStock() {
 public void setStock(String stock) {
 	this.stock = stock;
 }
-public String getComlogo() {
-	return comlogo;
-}
-public void setComlogo(String comlogo) {
-	this.comlogo = comlogo;
-}
 public String getComtitle() {
 	return comtitle;
 }
@@ -86,5 +80,11 @@ public String getId() {
 }
 public void setId(String id) {
 	this.id = id;
+}
+public String getComLogo() {
+	return comLogo;
+}
+public void setComLogo(String comLogo) {
+	this.comLogo = comLogo;
 }
 }

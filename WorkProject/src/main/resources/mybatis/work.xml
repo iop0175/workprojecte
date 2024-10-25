@@ -16,15 +16,18 @@
 	<select id="myWork" resultType="vipwork">
 		SELECT *
 		FROM (
-		SELECT work_name, work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
+		SELECT work_name,
+		work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
 		FROM COMWORK
 		WHERE COM_NAME = #{comName}
 
 		UNION ALL
 
-		SELECT work_name, work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
+		SELECT work_name, work_detailed,
+		UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
 		FROM VIP_COMWORK
-		WHERE COM_NAME = #{comName}
+		WHERE
+		COM_NAME = #{comName}
 		)
 		WHERE ROWNUM &lt;= 4
 	</select>
@@ -58,10 +61,12 @@
 		work_num, work_name,
 		work_detailed, work_person, work_region,
 		work_field, work_date,
-		work_pay, com_num, com_name, work_plan, work_requirements,upload_date,upload_name
+		work_pay, com_num, com_name, work_plan,
+		work_requirements,upload_date,upload_name
 		)
 		VALUES (
-		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson},
+		SEQ_WORK.NEXTVAL,
+		#{workName}, #{workDetailed}, #{workPerson},
 		#{workRegion},
 		#{workField}, #{workDate}, #{workPay}, #{comNum},
 		#{comName},
@@ -77,12 +82,42 @@
 		work_requirements,main_img_name,bener_img_name,upload_date,upload_name
 		)
 		VALUES (
-		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed}, #{workPerson},
+		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed},
+		#{workPerson},
 		#{workRegion},
-		#{workField}, #{workDate}, #{workPay}, #{comNum},
+		#{workField}, #{workDate}, #{workPay},
+		#{comNum},
 		#{comName},
 		#{workPlan},
 		#{workRequirements},#{mainImgName},#{benerImgName},SYSDATE,#{uploadName}
 		)
 	</insert>
+	<select id="view" resultType="work">
+		SELECT *
+		FROM (
+		SELECT work_name,
+		work_detailed, UPLOAD_DATE, views,VIEWS_COM,
+		WORK_PERSON,WORK_FIELD,WORK_PAY
+		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
+		FROM COMWORK
+		WHERE work_num =
+		#{workid}
+
+		UNION ALL
+
+		SELECT work_name,
+		work_detailed, UPLOAD_DATE,
+		views,VIEWS_COM,
+		WORK_PERSON,WORK_FIELD,WORK_PAY
+		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
+		FROM VIP_COMWORK
+		WHERE work_num
+		= #{workid}
+		)
+	</select>
+	<select id="com" resultType="company">
+		SELECT * FROM COMPANY WHERE COMNUM = (SELECT COM_NUM FROM VIP_COMWORK WHERE
+		work_num = #{workid}) OR COMNUM = (SELECT COM_NUM FROM COMWORK WHERE
+		work_num = #{workid})
+	</select>
 </mapper>

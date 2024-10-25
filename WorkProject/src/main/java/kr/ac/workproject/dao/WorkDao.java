@@ -2,6 +2,7 @@ package kr.ac.workproject.dao;
 
 import java.util.List;
 
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 
@@ -18,5 +19,9 @@ public interface WorkDao {
 	void vipadd(VipWork vipwork);
 
 	List<Work> myWork(String comName);
+
+	List<Work> view(String workid);
+
+	Company com(String workid);
 
 }

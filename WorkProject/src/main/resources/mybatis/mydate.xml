@@ -24,9 +24,9 @@
 	</select>
 	<insert id="comadd">
 		INSERT INTO COMPANY
-		(COMNUM,COMNAME,COMJOB,COMREGION,CEONAME,COMBRN,COMDATE,STOCK)
+		(COMNUM,COMNAME,COMJOB,COMREGION,CEONAME,COMBRN,COMDATE,STOCK,COM_LOGO)
 		VALUES
-		(SEQ_COM.NEXTVAL,#{comname},#{comjob},#{comregion},#{ceoname},#{combrn},#{comdate},#{stock})
+		(SEQ_COM.NEXTVAL,#{comname},#{comjob},#{comregion},#{ceoname},#{combrn},#{comdate},#{stock},#{comLogo})
 	</insert>
 	<update id="cominput">
 		UPDATE MYDATE 

@@ -1,5 +1,8 @@
 package kr.ac.workproject.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
@@ -16,6 +20,7 @@ import kr.ac.workproject.service.MyadteService;
 @Controller
 public class LoginController {
 	final String path = "login/";
+	final String IMGPATH = "d:/upload/ComLogo";
 	@Autowired
 	MyadteService service;
 
@@ -66,10 +71,22 @@ public class LoginController {
 		
 	}
 	@PostMapping("/comadd")
-	String comadd(Company item,HttpSession session) {
+	String comadd(Company item,HttpSession session,MultipartFile comlogo) {
 		Mydate mydate = (Mydate) session.getAttribute("mydate");
+		String comname = item.getCeoname();
+		if (comlogo != null && comlogo.getSize() > 0) {
+			String logoImgName = comname + "_Logo" + comlogo.getOriginalFilename();
+			try {
+				comlogo.transferTo(new File(IMGPATH + logoImgName));
+				item.setComLogo(logoImgName);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		item.setId(mydate.getId());
+		
 		service.comadd(item);
-		return "redirect:../";
+		return "redirect:.";
 	}
 }

@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 @Repository
@@ -40,6 +41,16 @@ public class WorkDaoImpl implements WorkDao {
 	public List<Work> myWork(String comName) {
 		// TODO Auto-generated method stub
 		return sql.selectList("work.myWork", comName);
+	}
+	@Override
+	public List<Work> view(String workid) {
+		// TODO Auto-generated method stub
+		return sql.selectList("work.view", workid);
+	}
+	@Override
+	public Company com(String workid) {
+		// TODO Auto-generated method stub
+		return sql.selectOne("work.com",workid);
 	}
 
 

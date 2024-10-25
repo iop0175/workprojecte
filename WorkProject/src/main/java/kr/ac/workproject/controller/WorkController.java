@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
+import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
 import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
@@ -116,5 +120,13 @@ public class WorkController {
 		vipwork.setUploadName(mydate.getComNum());
 		service.vipadd(vipwork);
 		return "redirect:../work";
+	}
+	@GetMapping("/view/{workid}")
+	String view (@PathVariable String workid,Model model) {
+		List<Work> list = service.view(workid);
+		Company com = service.com(workid);
+		model.addAttribute("com", com);
+		model.addAttribute("list", list);
+		return path + "view";
 	}
 }

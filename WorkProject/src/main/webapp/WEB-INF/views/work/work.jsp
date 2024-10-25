@@ -116,38 +116,40 @@
 			<div class="my_work">
 				<div id="slideShow">
 					<ul class="slides">
-						<li><c:if test="${sessionScope.mydate.id != null}">
-								<c:forEach items="${myWork}" var="mywork">
-									<li>
-										<div class="slide_box">
-											<div class="slide_box_workname">${mywork.workName}</div>
-											<div class="slide_box_workex">
-												작업내용
-												<p class="slide_box_workex">${mywork.workDetailed}</p>
-											</div>
-											<div class="slide_box_uploaddate">
-												게시일
-												<p class="slide_box_text">${mywork.uploadDate}</p>
-											</div>
-											<div class="slide_box_uploadname">
-												게시자명
-												<p class="slide_box_text">${mywork.uploadName}</p>
-											</div>
-											<div class="slide_box_view">
-												조회수
-												<p class="slide_box_text">${mywork.views}</p>
-											</div>
-											<div class="slide_box_viewcom">
-												지원업체 수
-												<p class="slide_box_text">${mywork.viewsCom}</p>
-											</div>
+						<c:if test="${sessionScope.mydate.id != null}">
+							<c:forEach items="${myWork}" var="mywork">
+								<li>
+									<div class="slide_box">
+										<div class="slide_box_workname">${mywork.workName}</div>
+										<div class="slide_box_workex">
+											작업내용
+											<p class="slide_box_workex">${mywork.workDetailed}</p>
 										</div>
-									</li>
-								</c:forEach>
-								<div class="slide_box"></div>
-							</c:if> <c:if test="${sessionScope.mydate.id == null}">
+										<div class="slide_box_uploaddate">
+											게시일
+											<p class="slide_box_text">${mywork.uploadDate}</p>
+										</div>
+										<div class="slide_box_uploadname">
+											게시자명
+											<p class="slide_box_text">${mywork.uploadName}</p>
+										</div>
+										<div class="slide_box_view">
+											조회수
+											<p class="slide_box_text">${mywork.views}</p>
+										</div>
+										<div class="slide_box_viewcom">
+											지원업체 수
+											<p class="slide_box_text">${mywork.viewsCom}</p>
+										</div>
+									</div>
+								</li>
+							</c:forEach>
+						</c:if>
+						<c:if test="${sessionScope.mydate.id == null}">
+							<li>
 								<div id="nonlogin">로그인후 확인 가능합니다</div>
-							</c:if></li>
+							</li>
+						</c:if>
 					</ul>
 					<p class="controller">
 						<span class="prev">&lang;</span> <span class="next">&rang;</span>
@@ -162,7 +164,7 @@
 		<div class="product_list">
 			<c:if test="${viplist.size() != null}">
 				<c:if test="${vipcol != null}">
-					<a href="/work/view/${vipcol.comNum}">
+					<a href="/work/view/${vipcol.workNum}" target="_blank">
 						<div class="vip_col">
 							<div class="product_hover_logo">
 								<img class="hover_logo_imgfile" alt=""
@@ -182,7 +184,7 @@
 			<c:if test="${viplist.size() == null}">
 				<c:if test="${vipcol != null}">
 					<c:forEach var="vipcol" items="${vipcol}">
-						<a href="/work/view/${vipcol.comNum}">
+						<a href="/work/view/${vipcol.workNum}" target="_blank">
 							<div class="vip_col">
 								<div class="product_hover_logo">
 									<img class="hover_logo_imgfile" alt=""
@@ -204,7 +206,7 @@
 			</c:if>
 			<c:if test="${viplist.size() != null}">
 				<c:forEach var="item" items="${viplist}">
-					<a href="/work/view/${viplist.comNum}">
+					<a href="/work/view/${viplist.workNum}" target="_blank">
 						<div class="product">
 							<div class="porduct_data">
 								<div class="product_logo">
@@ -246,7 +248,7 @@
 		<div class="product_list">
 			<c:if test="${list.size() != null}">
 				<c:forEach items="${list}" var="item">
-					<a href="<a href="/work/view/${item.comNum}">">
+					<a href="/work/view/${item.workNum}" target="_blank">
 						<div class="product_not">
 							<div class="n_product_logo">
 								<img class="n_logo_imgfile" alt=""
