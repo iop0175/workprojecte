@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,15 @@
 <link rel="stylesheet" href="/resources/css/work/add.css">
 <script src="/resources/js/nav.js"></script>
 <script src="/resources/js/work/add.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+<script src="/resources/lang/summernote-ko-KR.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,9 +35,17 @@
                         </svg>
 				</span> <input type="text">
 			</div>
-			<div class="login">
-				<a href="login">로그인</a> | <a href="signup">회원가입</a>
-			</div>
+			<c:if test="${sessionScope.mydate ==  null}">
+				<div class="login">
+					<a href="/login">로그인</a> | <a href="/signup">회원가입</a>
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.mydate !=  null}">
+				<div class="login">
+					<a href="/mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
+					| <a href="/logout">로그아웃</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="navbar" id="nav">
 			<div class="manu">
@@ -96,15 +114,15 @@
 					<div id="wwbutton">WW Partners</div>
 				</div>
 				<form method="post" id="conteant" enctype="multipart/form-data">
-					<div><p>작업명</p><input type="text" name="workName" oninput="updateProgress()" data-target="muge_comname" class="essential"></div>
-					<div><p>작업설명</p><input type="text" name="workDetailed" oninput="updateProgress()" data-target="muge_comex" class="essential"></div>
-					<div><p>예상 필요인원</p><input type="text" name="workPerson" oninput="updateProgress()" data-target="muge_personnel" class="essential"></div>
-					<div><p>작업위치</p><input type="text" name="workRegion" oninput="updateProgress()" data-target="muge_region" class="essential"></div>
-					<div><p>작업계획서</p><input type="text" name="workPlan" oninput="updateProgress()" data-target="muge_workplan" class="essential"></div>
-					<div><p>작업분야</p><input type="text" name="workField"></div>
-					<div><p>예상작업일정</p><input type="date" name="workDate"></div>
-					<div><p>필요조건</p><input type="text" name="workRequirements"></div>
-					<div><p>예상단가</p><input type="text" name="workPay"></div>
+					<div class="conteant_item"><p>작업명</p><input type="text" name="workName" oninput="updateProgress()" data-target="muge_comname" class="essential"></div>
+					<div id="summer"><p>작업설명</p><textarea id="summernote" name="workDetailed" oninput="updateProgress()" data-target="muge_comex" class="essential"></textarea></div>
+					<div class="conteant_item"><p>예상 필요인원</p><input type="text" name="workPerson" oninput="updateProgress()" data-target="muge_personnel" class="essential"></div>
+					<div class="conteant_item"><p>작업위치</p><input type="text" name="workRegion" oninput="updateProgress()" data-target="muge_region" class="essential"></div>
+					<div class="conteant_item"><p>작업계획서</p><input type="text" name="workPlan" oninput="updateProgress()" data-target="muge_workplan" class="essential"></div>
+					<div class="conteant_item"><p>작업분야</p><input type="text" name="workField"></div>
+					<div class="conteant_item"><p>예상작업일정</p><input type="date" name="workDate"></div>
+					<div class="conteant_item"><p>필요조건</p><input type="text" name="workRequirements"></div>
+					<div class="conteant_item"><p>예상단가</p><input type="text" name="workPay"></div>
 					<div id="vipMain"><p>메인이미지</p><input type="file" name="mainImg"></div>
 					<div id="vipBener"><p>베너이미지</p><input type="file" name="benerImg"></div>
 				</form>
@@ -134,6 +152,50 @@
 		</div>
 		<div class="footer"></div>
 	</div>
-	</div>
 </body>
+<script>
+    $('#summernote').summernote({
+    	width: 650,
+        height: 300,
+		maxWidth: 650,
+        focus: true,
+        lang: 'ko-KR',
+        toolbar: [
+            [
+                'style', ['style']
+            ],
+            [
+                'font',
+                [
+                    'bold', 'underline', 'clear'
+                ]
+            ],
+            ['fontsize', ['fontsize']],
+            [
+                'color', ['color']
+            ],
+            [
+                'para',
+                [
+                    'ul', 'ol', 'paragraph'
+                ]
+            ],
+            [
+                'table', ['table']
+            ],
+            [
+                'insert',
+                [
+                    'link', 'picture', 'video'
+                ]
+            ],
+            [
+                'view',
+                [
+                    'fullscreen', 'codeview', 'help'
+                ]
+            ]
+        ]
+    });
+</script>
 </html>

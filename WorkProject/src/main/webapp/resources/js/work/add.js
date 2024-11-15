@@ -33,11 +33,9 @@ function updateProgress() {
 
     if (complete) {
         if (progress == 100) {
-            // 100%일 때 "입력 완료" 표시
             complete.innerText = "입력 완료";
             button.type = "submit";
         } else {
-            // 100%가 되었다가 다시 입력이 지워지면 동적으로 값 업데이트
             complete.innerHTML = `입력 완료까지 <span id="addProgress">${progress}</span>% !`;
             button.type = "button";
             
@@ -46,10 +44,20 @@ function updateProgress() {
 }
 window.addEventListener("load",()=>{
     document.getElementById("wwbutton").addEventListener("click",e=>{
-        document.getElementById("wwbutton").style.backgroundColor = "rgb(106, 106, 225)";
-        document.getElementById("wwbutton").style.Color = "white";
-        document.getElementById("vipMain").style.display= "flex";
-        document.getElementById("vipBener").style.display= "flex";
-        document.getElementById("conteant").action ="vipadd"
-    })
-})
+        fetch("/vipcheck").then(resp => resp.text()).then(result =>{
+            if(result == "ok"){
+                document.getElementById("wwbutton").style.backgroundColor = "rgb(106, 106, 225)";
+                document.getElementById("wwbutton").style.Color = "white";
+                document.getElementById("vipMain").style.display= "flex";
+                document.getElementById("vipBener").style.display= "flex";
+                document.getElementById("conteant").action ="vipadd";
+            }else{
+                if(confirm("유료회원 서비스입니다 구독하시겠습니까?") == true){
+                    location.href="/addvip";
+                }else{
+                    alert("가입안함");
+                };
+            };
+        });
+    });
+});

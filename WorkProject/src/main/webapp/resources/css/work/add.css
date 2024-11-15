@@ -396,12 +396,11 @@ div::-webkit-scrollbar {
     top: 30px;
 }
 
-#conteant div:not(#vipMain,#vipBener){
+ .conteant_item{
     margin: 50px;
     width: 80%;
     display: flex;
     align-items: center;
-
     height: 100px;
 }
 #conteant div p{
@@ -514,4 +513,10 @@ div::-webkit-scrollbar {
     margin-top: 50px;
     display: none;
     text-align: center;
+}
+#summer{
+    display: flex;
+}
+#summer p{
+    margin-right: 50px;
 }

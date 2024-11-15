@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/main.css">
 <link rel="stylesheet" href="/resources/css/login/mypage.css">
+<script src="/resources/js/nav.js"></script>
+<script type="text/javascript" src="/resources/js/login/mydate.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -30,14 +32,15 @@
                     <input type="text">
                 </div>
                 <c:if test="${sessionScope.mydate ==  null}">
-			<div class="login">
-				<a href="login">로그인</a> | <a href="signup">회원가입</a>
-			</div>
+				<div class="login">
+					<a href="/login">로그인</a> | <a href="/signup">회원가입</a>
+				</div>
 			</c:if>
 			<c:if test="${sessionScope.mydate !=  null}">
-			<div class="login">
-				<a href="mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a> | <a href="logout">로그아웃</a>
-			</div>
+				<div class="login">
+					<a href="/mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
+					| <a href="/logout">로그아웃</a>
+				</div>
 			</c:if>
             </div>
             <div class="navbar" id="nav">
@@ -143,11 +146,17 @@
             <div class="main">
                 <div id="mydata">
                     <div class="">
-                        <h1>ooo님의 정보</h1>
+                        <h1>${sessionScope.mydate.id}님의 정보</h1>
                     </div>
-                    <div class="pageButton"><a href="">개인정보 수정</a></div>
+                    <c:if test="${sessionScope.mydate.comName == null}">
                     <div class="pageButton"><a href="/comadd">COMPANY</a></div>
-                    <div class="pageButton"><a href="">나의 경험 | 작업 경험 입력하기</a></div>
+                    <div class="pageButton" id="oldadd">기존 기업에 인원등록</div>
+                    </c:if>
+                    <c:if test="${sessionScope.mydate.comName != null}">
+                    <div class="pageButton"><a href="/company/mycompany">COMPANY</a></div>
+                    <div class="pageButton"><a href="/company/mycompany/sign">인원 등록 승인</a></div>
+                    <div class="pageButton"><a href="">공고 관리 | 직원 관리</a></div>
+                    </c:if>
                     <div class="pageButton"><a href="/work/add">작업 등록하기</a></div>
                 </div>
             </div>

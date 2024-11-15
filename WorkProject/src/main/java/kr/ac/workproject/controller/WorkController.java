@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
-import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 import kr.ac.workproject.service.WorkService;
 
@@ -47,9 +48,9 @@ public class WorkController {
 		}
 		List<Work> list = service.workList();
 		model.addAttribute("list", list);
-		List<VipWork> Viplist = service.workVipList();
+		List<Work> Viplist = service.workVipList();
 		if (Viplist.size() > 1) {
-			VipWork item = Viplist.get(1);
+			Work item = Viplist.get(1);
 			Viplist.remove(item);
 			model.addAttribute("vipcol", item);	
 			model.addAttribute("viplist", Viplist);
@@ -90,7 +91,7 @@ public class WorkController {
 	}
 
 	@PostMapping("/vipadd")
-	String vipadd(VipWork vipwork, HttpSession session, MultipartFile mainImg, MultipartFile benerImg) {
+	String vipadd(Work vipwork, HttpSession session, MultipartFile mainImg, MultipartFile benerImg) {
 		Mydate mydate = (Mydate) session.getAttribute("mydate");
 		String comname = mydate.getComName();
 		String workname = vipwork.getWorkName();
@@ -115,18 +116,37 @@ public class WorkController {
 			}
 
 		}
+		vipwork.setVipNum(mydate.getVipNum());
 		vipwork.setComName(mydate.getComName());
 		vipwork.setComNum(mydate.getComNum());
-		vipwork.setUploadName(mydate.getComNum());
+		vipwork.setUploadName(mydate.getId());
 		service.vipadd(vipwork);
 		return "redirect:../work";
 	}
 	@GetMapping("/view/{workid}")
 	String view (@PathVariable String workid,Model model) {
-		List<Work> list = service.view(workid);
+		Work list = service.view(workid);
+		List<Work> sidework = service.seide(workid);
+		model.addAttribute("side", sidework);
 		Company com = service.com(workid);
 		model.addAttribute("com", com);
 		model.addAttribute("list", list);
 		return path + "view";
+	}
+
+	@GetMapping("/apply/{comName}")
+	@ResponseBody
+	String apply(HttpSession session,@PathVariable String comName) {
+		Mydate mydate = (Mydate) session.getAttribute("mydate");
+		String mycomName = mydate.getComName();
+		System.out.println(mycomName);
+		System.out.println(comName);
+		 if(comName.equals(mycomName)){
+			return "samecom";
+		}else if(!comName.equals(mycomName) && mydate.getId().length() >1){
+			return "ok";
+		}else {
+			return "fail";
+		}
 	}
 }

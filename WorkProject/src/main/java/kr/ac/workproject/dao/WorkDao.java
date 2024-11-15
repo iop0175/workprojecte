@@ -3,7 +3,6 @@ package kr.ac.workproject.dao;
 import java.util.List;
 
 import kr.ac.workproject.model.Company;
-import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 
 public interface WorkDao {
@@ -14,14 +13,16 @@ public interface WorkDao {
 
 	void add(Work workItem);
 
-	List<VipWork> WorkVipList();
+	List<Work> WorkVipList();
 
-	void vipadd(VipWork vipwork);
+	void vipadd(Work vipwork);
 
 	List<Work> myWork(String comName);
 
-	List<Work> view(String workid);
+	Work view(String workid);
 
 	Company com(String workid);
+
+	List<Work> side(String workid);
 
 }

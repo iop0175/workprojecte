@@ -21,6 +21,30 @@ private Date uploadDate;
 private String uploadName;
 private Long views;
 private Long viewsCom;
+private int vipNum;
+private String mainImgName;
+private String benerImgName;
+private String situation;
+
+public String getKeyword() {
+	return keyword;
+}
+public void setKeyword(String keyword) {
+	this.keyword = keyword;
+}
+
+public String getMainImgName() {
+	return mainImgName;
+}
+public void setMainImgName(String mainImgName) {
+	this.mainImgName = mainImgName;
+}
+public String getBenerImgName() {
+	return benerImgName;
+}
+public void setBenerImgName(String benerImgName) {
+	this.benerImgName = benerImgName;
+}
 public Date getUploadDate() {
 	return uploadDate;
 }
@@ -126,5 +150,18 @@ public Date getWorkDate() {
 public void setWorkDate(Date workDate) {
 	this.workDate = workDate;
 }
+public int getVipNum() {
+	return vipNum;
+}
+public void setVipNum(int vipNum) {
+	this.vipNum = vipNum;
+}
+public String getSituation() {
+	return situation;
+}
+public void setSituation(String situation) {
+	this.situation = situation;
+}
+
 
 }

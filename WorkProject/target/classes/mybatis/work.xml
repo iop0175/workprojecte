@@ -7,54 +7,43 @@
 		SELECT *
 		FROM (
 		SELECT *
-		FROM
-		comwork
+		FROM comwork
+		WHERE vip_num is null
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
 		WHERE ROWNUM &lt;= 10
 	</select>
-	<select id="myWork" resultType="vipwork">
+	<select id="myWork" resultType="work">
 		SELECT *
 		FROM (
-		SELECT work_name,
+		SELECT work_num,work_name,
 		work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
 		FROM COMWORK
 		WHERE COM_NAME = #{comName}
-
-		UNION ALL
-
-		SELECT work_name, work_detailed,
-		UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
-		FROM VIP_COMWORK
-		WHERE
-		COM_NAME = #{comName}
 		)
 		WHERE ROWNUM &lt;= 4
 	</select>
-	<select id="vipList" resultType="vipwork">
+	<select id="vipList" resultType="work">
 		SELECT *
 		FROM (
 		SELECT *
-		FROM
-		vip_comwork
+		FROM comwork
+		WHERE vip_num is not null
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
 		WHERE ROWNUM &lt;= 10
 	</select>
 	<select id="searchList" resultType="work">
-		SELECT *
-		FROM (
-		SELECT *
-		FROM
-		comwork
-		WHERE WORKNAME LIKE '%' || #{item} || '%'
-		OR NEEDSWORK LIKE '%'
-		|| #{item} || '%'
-		OR COMNAME LIKE '%' || #{item} || '%'
-		ORDER BY
-		DBMS_RANDOM.VALUE
-		)
-		WHERE ROWNUM &lt;= 12
+		 SELECT *
+    FROM (
+        SELECT *
+        FROM comwork
+        WHERE WORK_NAME LIKE '%' || #{item} || '%'
+           OR WORK_FIELD LIKE '%' || #{item} || '%'
+           OR COM_NAME LIKE '%' || #{item} || '%'
+        ORDER BY DBMS_RANDOM.VALUE
+    )
+    WHERE ROWNUM &lt;= 12
 	</select>
 	<insert id="add">
 		INSERT INTO COMWORK (
@@ -62,7 +51,7 @@
 		work_detailed, work_person, work_region,
 		work_field, work_date,
 		work_pay, com_num, com_name, work_plan,
-		work_requirements,upload_date,upload_name
+		work_requirements,upload_date,upload_name,situation
 		)
 		VALUES (
 		SEQ_WORK.NEXTVAL,
@@ -70,16 +59,16 @@
 		#{workRegion},
 		#{workField}, #{workDate}, #{workPay}, #{comNum},
 		#{comName},
-		#{workPlan}, #{workRequirements},SYSDATE,#{uploadName}
+		#{workPlan}, #{workRequirements},SYSDATE,#{uploadName},#{situation}
 		)
 	</insert>
 	<insert id="vipadd">
-		INSERT INTO VIP_COMWORK (
+		INSERT INTO COMWORK (
 		work_num, work_name,
 		work_detailed, work_person, work_region,
 		work_field, work_date,
 		work_pay, com_num, com_name, work_plan,
-		work_requirements,main_img_name,bener_img_name,upload_date,upload_name
+		work_requirements,main_img_name,bener_img_name,upload_date,upload_name,vip_num
 		)
 		VALUES (
 		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed},
@@ -89,35 +78,34 @@
 		#{comNum},
 		#{comName},
 		#{workPlan},
-		#{workRequirements},#{mainImgName},#{benerImgName},SYSDATE,#{uploadName}
+		#{workRequirements},#{mainImgName},#{benerImgName},SYSDATE,#{uploadName},#{vipNum}
 		)
 	</insert>
 	<select id="view" resultType="work">
 		SELECT *
 		FROM (
-		SELECT work_name,
+		SELECT work_num,work_name,
 		work_detailed, UPLOAD_DATE, views,VIEWS_COM,
 		WORK_PERSON,WORK_FIELD,WORK_PAY
 		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
 		FROM COMWORK
 		WHERE work_num =
 		#{workid}
-
-		UNION ALL
-
-		SELECT work_name,
-		work_detailed, UPLOAD_DATE,
-		views,VIEWS_COM,
-		WORK_PERSON,WORK_FIELD,WORK_PAY
-		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
-		FROM VIP_COMWORK
-		WHERE work_num
-		= #{workid}
 		)
 	</select>
+	<select id="side" resultType="work">
+		SELECT *
+		FROM (
+		SELECT work_num,work_name,
+		work_detailed, UPLOAD_DATE, views,VIEWS_COM,
+		WORK_PERSON,WORK_FIELD,WORK_PAY
+		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
+		FROM COMWORK
+		WHERE work_field LIKE '%' || (SELECT work_field FROM comwork WHERE work_num = #{workid}) || '%'
+		AND work_num &lt;= #{workid})
+	</select>
 	<select id="com" resultType="company">
-		SELECT * FROM COMPANY WHERE COMNUM = (SELECT COM_NUM FROM VIP_COMWORK WHERE
-		work_num = #{workid}) OR COMNUM = (SELECT COM_NUM FROM COMWORK WHERE
+		SELECT * FROM COMPANY WHERE  COMNUM = (SELECT COM_NUM FROM COMWORK WHERE
 		work_num = #{workid})
 	</select>
 </mapper>

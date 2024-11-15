@@ -1,6 +1,8 @@
 package kr.ac.workproject.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 import kr.ac.workproject.dao.MydateDao;
 import kr.ac.workproject.model.Company;
 import kr.ac.workproject.model.Mydate;
+import kr.ac.workproject.model.Payment;
+import kr.ac.workproject.model.Signcom;
 
 @Service
 public class MydateServiceImpl implements MyadteService {
@@ -43,5 +47,40 @@ public class MydateServiceImpl implements MyadteService {
 	public void comadd(Company item) {
 		dao.comadd(item);
 		
+	}
+
+	@Override
+	public boolean comcheck(String comname) {
+		if (dao.comcheck(comname) == 0) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public void addvip(Payment payment) {
+		dao.addvip(payment);
+		dao.updatevip(payment);
+	}
+
+	@Override
+	public void old(Signcom signcom) {
+		dao.old(signcom);
+		
+	}
+
+	@Override
+	public List<Signcom> signcom(String comName) {
+		return dao.signcom(comName);
+	}
+
+	@Override
+	public boolean oldaddch(String id) {
+		if (dao.oldaddch(id)== 0) {
+			return true;
+		}
+		return false;
 	}
 }

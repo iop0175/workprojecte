@@ -14,4 +14,8 @@ String order() {
 String myorder() {
 	return "myorder";
 }
+@GetMapping("/apply/{workid}")
+String apply() {
+	return "apply";
+}
 }

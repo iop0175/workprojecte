@@ -6,29 +6,41 @@
 	<select id="cityCount" resultType="Integer">
 		SELECT
 		(SELECT COUNT(*) FROM
-		COMWORK WHERE WORK_REGION = #{cityName}) +
-		(SELECT COUNT(*) FROM
-		VIP_COMWORK WHERE WORK_REGION = #{cityName}) as cityCount
+		COMWORK WHERE WORK_REGION = #{cityName}) as cityCount
 		FROM dual
 	</select>
 	<select id="cityList" resultType="work">
 		SELECT *
 		FROM (
 		SELECT *
-		FROM comwork
+		FROM COMWORK
 		WHERE WORK_REGION = #{cityName}
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
 		WHERE ROWNUM &lt;= 10
 	</select>
-	<select id="vipcityList" resultType="vipwork">
+	<select id="vipcityList" resultType="work">
 		SELECT *
 		FROM (
 		SELECT *
-		FROM VIP_COMWORK
-		WHERE WORK_REGION = #{vipCityName}
+		FROM COMWORK
+		WHERE WORK_REGION = #{vipCityName} and vip_num = 2
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
 		WHERE ROWNUM &lt;= 10
 	</select>
+	<select id="comBrn" resultType="Integer">
+		SELECT combrn FROM COMPANY WHERE COMNAME = #{comName}
+	</select>
+	<select id="mycom" resultType="company">
+		SELECT * FROM COMPANY WHERE COMNAME = #{comName}
+	</select>
+	<update id="addcom">
+		UPDATE mydate SET COM_NAME = #{comname}
+		WHERE id = #{id}
+	</update>
+	<delete id="delcom">
+		DELETE FROM signcom 
+		WHERE id = #{id}
+	</delete>
 </mapper>

@@ -36,13 +36,13 @@
 			</div>
 			<c:if test="${sessionScope.mydate ==  null}">
 				<div class="login">
-					<a href="login">로그인</a> | <a href="signup">회원가입</a>
+					<a href="/login">로그인</a> | <a href="/signup">회원가입</a>
 				</div>
 			</c:if>
 			<c:if test="${sessionScope.mydate !=  null}">
 				<div class="login">
-					<a href="mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
-					| <a href="logout">로그아웃</a>
+					<a href="/mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
+					| <a href="/logout">로그아웃</a>
 				</div>
 			</c:if>
 		</div>
@@ -118,31 +118,31 @@
 					<ul class="slides">
 						<c:if test="${sessionScope.mydate.id != null}">
 							<c:forEach items="${myWork}" var="mywork">
-								<li>
-									<div class="slide_box">
-										<div class="slide_box_workname">${mywork.workName}</div>
-										<div class="slide_box_workex">
-											작업내용
-											<p class="slide_box_workex">${mywork.workDetailed}</p>
+								<li><a href="/contract/my/${mywork.workNum}">
+										<div class="slide_box">
+											<div class="slide_box_workname">${mywork.workName}</div>
+											<div class="slide_box_workex">
+												작업내용
+												<p class="slide_box_workex">${mywork.workDetailed}</p>
+											</div>
+											<div class="slide_box_uploaddate">
+												게시일
+												<p class="slide_box_text">${mywork.uploadDate}</p>
+											</div>
+											<div class="slide_box_uploadname">
+												게시자명
+												<p class="slide_box_text">${mywork.uploadName}</p>
+											</div>
+											<div class="slide_box_view">
+												조회수
+												<p class="slide_box_text">${mywork.views}</p>
+											</div>
+											<div class="slide_box_viewcom">
+												지원업체 수
+												<p class="slide_box_text">${mywork.viewsCom}</p>
+											</div>
 										</div>
-										<div class="slide_box_uploaddate">
-											게시일
-											<p class="slide_box_text">${mywork.uploadDate}</p>
-										</div>
-										<div class="slide_box_uploadname">
-											게시자명
-											<p class="slide_box_text">${mywork.uploadName}</p>
-										</div>
-										<div class="slide_box_view">
-											조회수
-											<p class="slide_box_text">${mywork.views}</p>
-										</div>
-										<div class="slide_box_viewcom">
-											지원업체 수
-											<p class="slide_box_text">${mywork.viewsCom}</p>
-										</div>
-									</div>
-								</li>
+								</a></li>
 							</c:forEach>
 						</c:if>
 						<c:if test="${sessionScope.mydate.id == null}">
@@ -206,7 +206,7 @@
 			</c:if>
 			<c:if test="${viplist.size() != null}">
 				<c:forEach var="item" items="${viplist}">
-					<a href="/work/view/${viplist.workNum}" target="_blank">
+					<a href="/work/view/${item.workNum}" target="_blank">
 						<div class="product">
 							<div class="porduct_data">
 								<div class="product_logo">

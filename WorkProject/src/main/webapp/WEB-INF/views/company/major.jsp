@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +23,17 @@
                     </svg>
 				</span> <input type="text">
 			</div>
-			<div class="login">
-				<a href="login">로그인</a> | <a href="signup">회원가입</a>
-			</div>
+			<c:if test="${sessionScope.mydate ==  null}">
+				<div class="login">
+					<a href="/login">로그인</a> | <a href="/signup">회원가입</a>
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.mydate !=  null}">
+				<div class="login">
+					<a href="/mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
+					| <a href="/logout">로그아웃</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="navbar" id="nav">
                 <div class="manu">

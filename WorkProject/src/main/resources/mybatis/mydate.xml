@@ -24,9 +24,9 @@
 	</select>
 	<insert id="comadd">
 		INSERT INTO COMPANY
-		(COMNUM,COMNAME,COMJOB,COMREGION,CEONAME,COMBRN,COMDATE,STOCK,COM_LOGO)
+		(COMNUM,COMNAME,COMJOB,COMREGION,CEONAME,COMBRN,COMDATE,STOCK,COM_LOGO,info,page)
 		VALUES
-		(SEQ_COM.NEXTVAL,#{comname},#{comjob},#{comregion},#{ceoname},#{combrn},#{comdate},#{stock},#{comLogo})
+		(SEQ_COM.NEXTVAL,#{comname},#{comjob},#{comregion},#{ceoname},#{combrn},#{comdate},#{stock},#{comLogo},#{info},#{page})
 	</insert>
 	<update id="cominput">
 		UPDATE MYDATE 
@@ -35,4 +35,29 @@
 		,MASTERID = (SELECT comname FROM COMPANY WHERE comname = #{comname})
 		WHERE id = #{id}
 	</update>
+	<select id="comcheck" resultType="Integer">
+		SELECT COUNT(*) from COMPANY WHERE comname=#{comname}
+	</select>
+	<insert id="addvip">
+		INSERT INTO vip VALUES(SEQ_VIP.nextVal,#{comName},#{id},ADD_MONTHS(SYSDATE, ${month}))
+		<selectKey keyProperty="vipNum" resultType="Integer" order="AFTER">
+			SELECT
+			SEQ_vip.currval from dual
+		</selectKey>
+	</insert>
+	<update id="updatevip">
+		UPDATE MYDATE 
+		SET VIP_NUM = #{vipNum} 
+		WHERE com_name = #{comName}
+	</update>
+	<insert id="old">
+		INSERT INTO SIGNCOM
+		VALUES(SEQ_SIGN.nextval,${comname},#{id},#{name},#{empnum},#{tel})
+	</insert>
+	<select id="signcom" resultType="signcom">
+		SELECT * FROM SIGNCOM WHERE COMNAME = #{comName}
+	</select>
+	<select id="oldaddch" resultType="Integer">
+		SELECT COUNT(*) FROM SIGNCOM WHERE id = #{id}
+	</select>
 </mapper>

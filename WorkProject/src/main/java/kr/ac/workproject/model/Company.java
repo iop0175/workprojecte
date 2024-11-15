@@ -15,6 +15,21 @@ private String comLogo;
 private String comtitle;
 private int cityCount;
 private String id;
+private int vipNum;
+private String info;
+private String page;
+public String getInfo() {
+	return info;
+}
+public void setInfo(String info) {
+	this.info = info;
+}
+public String getPage() {
+	return page;
+}
+public void setPage(String page) {
+	this.page = page;
+}
 public String getComnum() {
 	return comnum;
 }
@@ -87,4 +102,12 @@ public String getComLogo() {
 public void setComLogo(String comLogo) {
 	this.comLogo = comLogo;
 }
+public int getVipNum() {
+	return vipNum;
+}
+public void setVipNum(int vipNum) {
+	this.vipNum = vipNum;
+}
+
+
 }

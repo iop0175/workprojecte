@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="contract">
+
+	<insert id="vendor">
+		<if test="matNum == null">
+			INSERT INTO VENDOR
+			(VENDOR_NUM,ID,COM_NAME,WORK_NUM,PAY,INFO)
+			VALUES
+			(SEQ_VEN.NEXTVAL,#{id},#{comName},#{workNum},#{pay},#{info})
+		</if>
+		<if test="workNum == null">
+			INSERT INTO VENDOR
+			(VENDOR_NUM,ID,COM_NAME,MAT_NUM,PAY,INFO)
+			VALUES
+			(SEQ_VEN.NEXTVAL,#{id},#{comName},#{MAT_NUM},#{pay},#{info})
+		</if>
+	</insert>
+	<select id="mycon" resultType="vendor">
+		SELECT * FROM VENDOR WHERE
+		work_num = #{workNum}
+	</select>
+	<select id="fianl" resultType="vendor">
+		SELECT * FROM VENDOR WHERE
+		vendor_num = #{vendorNum}
+	</select>
+	<insert id="fianlcon">
+		<if test="matNum == null">
+			INSERT INTO contract
+			(contract_id,buyer_id,vendor_id,buyer_comname,vendor_comname,work_num,buyer_price,vendor_price,vendor_num,info)
+			VALUES
+			(SEQ_CON.NEXTVAL,#{buyerId},#{vendorId},#{buyerComname},#{vendorComname},#{workNum},#{vendorPrice},#{vendorPrice},#{vendorNum},#{info})
+		</if>
+		<if test="workNum == null">
+			INSERT INTO contract
+			(contract_id,buyer_id,vendor_id,buyer_comname,vendor_comname,mat_num,buyer_price,vendor_price,vendor_num,info)
+			VALUES
+			(SEQ_CON.NEXTVAL,#{buyerId},#{vendorId},#{buyerComname},#{vendorComname},#{matNum},#{vendorPrice},#{vendorPrice},#{vendorNum},#{info})
+		</if>
+	</insert>
+</mapper>

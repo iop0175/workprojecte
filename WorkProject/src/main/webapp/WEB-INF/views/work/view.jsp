@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,17 @@
 <link rel="stylesheet" href="/resources/css/main.css">
 <link rel="stylesheet" href="/resources/css/work/view.css">
 <script src="/resources/js/nav.js"></script>
+<script src="/resources/js/calc.js"></script>
+<script src="/resources/js/apply.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+<script src="/resources/lang/summernote-ko-KR.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -27,9 +38,17 @@
                         </svg>
 				</span> <input type="text">
 			</div>
-			<div class="login">
-				<a href="login">로그인</a> | <a href="signup">회원가입</a>
-			</div>
+			<c:if test="${sessionScope.mydate ==  null}">
+				<div class="login">
+					<a href="/login">로그인</a> | <a href="/signup">회원가입</a>
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.mydate !=  null}">
+				<div class="login">
+					<a href="/mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
+					| <a href="/logout">로그아웃</a>
+				</div>
+			</c:if>
 		</div>
 		<div class="navbar" id="nav">
 			<div class="manu">
@@ -92,31 +111,29 @@
 			</ul>
 		</div>
 		<div class="main">
-			
 			<div id="introBox">
-				<c:forEach items="${list}" var="item">
 				<div id="introBox">
-					<div id="comnNme">${item.comName}</div>
-					<div id="apply">공고 지원하기</div>
-					<div id="workName">${item.workName}</div>
+					<div id="comnNme">${list.comName}</div>
+					<div id="apply" data-comname="${list.comName}">공고 지원하기</div>
+					<div id="workName">${list.workName}</div>
 				</div>
 				<div id="contentBox">
 					<div>필요인원</div>
-					<div>${item.workPerson}</div>
+					<div>${list.workPerson}</div>
 					<div>작업지역</div>
-					<div>${item.workRegion}</div>
+					<div>${list.workRegion}</div>
 					<div>작업분야</div>
-					<div>${item.workField}</div>
-					<div>작업일자</div>
-					<div>${item.workDate}</div>
+					<div>${list.workField}</div>
+					<div>작업 시작일자</div>
+					<div>${list.workDate}</div>
 				</div>
 				<div class="title_work">작업설명</div>
-				<div id="mainContentBox">${item.workDetailed}</div>
+				<div id="mainContentBox">${list.workDetailed}</div>
 				<div class="title_work">작업위치</div>
 				<div id="areaContent">
 					<div>작업지역</div>
-					<div>${item.workRegion}</div>
-					<a href=""> <span> <svg
+					<div>${list.workRegion}</div>
+					<a href="https://map.kakao.com/?q=${list.workRegion}" target="_blank"> <span> <svg
 								xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
 								viewbox="0 0 30 13" fill="none">
                                     <path
@@ -131,9 +148,8 @@
 					</span>지도보기
 					</a>
 				</div>
-				</c:forEach>
 				<div class="title_work">기업정보</div>
-					<div id="comBox">
+				<div id="comBox">
 					<div id="comBoxComName">${com.comname}</div>
 
 					<div id="comBox_content">
@@ -152,28 +168,100 @@
 						<div id="comBoxLogo">logo</div>
 						<a href="" id="comBoxComView">기업정보 보기</a>
 					</div>
+
+				</div>
+				<div class="title_work" id="apply_title_box">지원 입력사항</div>
+				<div id="applyBox" class="hide">
+					<form action="/contract/vendor/${list.workNum}" method="post" id="applyform">
+						<div class="applyBox_name">측정가</div>
+						<div>
+							<label for=""></label><input type="number" id="calc_num" name="pay">
+							<span>만원</span>
+						</div>
+						<div id="applymu">
+							<div class="calc" data-num="1000" data-operator="+">+1000만원</div>
+							<div class="calc" data-num="100" data-operator="+">+100만원</div>
+							<div class="calc" data-num="10" data-operator="+">+10만원</div>
+							<div class="calc" data-num="1" data-operator="+">+1만원</div>
+							<div class="calc" data-num="0" data-operator="*">clear</div>
+							<div class="calc" data-num="1" data-operator="-">-1만원</div>
+							<div class="calc" data-num="10" data-operator="-">-10만원</div>
+							<div class="calc" data-num="100" data-operator="-">-100만원</div>
+							<div class="calc" data-num="1000" data-operator="-">-1000만원</div>
+						</div>
+						<div class="applyBox_name">특이 사항</div>
+						<div class="sum">
+							<label for=""></label>
+							<textarea id="summernote" name="info"></textarea>
+						</div>
+						<button id="applybutton">지원하기</button>
+					</form>
+
 				</div>
 			</div>
-			
+
 			<div id="side_nav">
-				<a href="">
+				<c:forEach items="${side}" var="side">
 					<div class="sideList">
-						<div class="sideComname">comname</div>
-						<div>workName</div>
+						<div class="sideComname">${side.comName}</div>
+						<div>${side.workName}</div>
 						<div class="sideWorkData">
-							<div>workRegion</div>
-							<div>workFiele</div>
+							<div>${side.workRegion}</div>
+							<div>${side.workField}</div>
 						</div>
-						<div>workDate</div>
+						<div>${side.workDate}</div>
 						<div class="viewBox">
-							<div class="sideView">지원하러가기</div>
+							<a href="/work/view/${side.workNum}"><div class="sideView">지원하러가기</div></a>
 						</div>
 					</div>
-				</a>
+				</c:forEach>
 			</div>
 		</div>
 		<div class="footer"></div>
 	</div>
-	</div>
 </body>
+<script>
+    $('#summernote').summernote({
+        height: 300,
+        focus: true,
+        maxWidth: 500,
+        lang: 'ko-KR',
+        toolbar: [
+            [
+                'style', ['style']
+            ],
+            [
+                'font',
+                [
+                    'bold', 'underline', 'clear'
+                ]
+            ],
+            ['fontsize', ['fontsize']],
+            [
+                'color', ['color']
+            ],
+            [
+                'para',
+                [
+                    'ul', 'ol', 'paragraph'
+                ]
+            ],
+            [
+                'table', ['table']
+            ],
+            [
+                'insert',
+                [
+                    'link', 'picture', 'video'
+                ]
+            ],
+            [
+                'view',
+                [
+                    'fullscreen', 'codeview', 'help'
+                ]
+            ]
+        ]
+    });
+</script>
 </html>

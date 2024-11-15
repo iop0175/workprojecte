@@ -3,7 +3,6 @@ package kr.ac.workproject.service;
 import java.util.List;
 
 import kr.ac.workproject.model.Company;
-import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 
 public interface WorkService {
@@ -14,15 +13,17 @@ public interface WorkService {
 
 	void add(Work workItem);
 
-	List<VipWork> workVipList();
+	List<Work> workVipList();
 
-	void vipadd(VipWork vipwork);
+	void vipadd(Work vipwork);
 
 	List<Work> myWork(String comName);
 
-	List<Work> view(String workid);
+	Work view(String workid);
 
 	Company com(String workid);
+
+	List<Work> seide(String workid);
 
 
 

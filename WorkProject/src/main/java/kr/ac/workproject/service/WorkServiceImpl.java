@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.workproject.dao.WorkDao;
 import kr.ac.workproject.model.Company;
-import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 @Service
 public class WorkServiceImpl implements WorkService {
@@ -29,12 +28,12 @@ public class WorkServiceImpl implements WorkService {
 		
 	}
 	@Override
-	public List<VipWork> workVipList() {
+	public List<Work> workVipList() {
 		// TODO Auto-generated method stub
 		return dao.WorkVipList();
 	}
 	@Override
-	public void vipadd(VipWork vipwork) {
+	public void vipadd(Work vipwork) {
 		// TODO Auto-generated method stub
 		dao.vipadd(vipwork);
 	}
@@ -44,7 +43,7 @@ public class WorkServiceImpl implements WorkService {
 		return dao.myWork(comName);
 	}
 	@Override
-	public List<Work> view(String workid) {
+	public Work view(String workid) {
 		// TODO Auto-generated method stub
 		return dao.view(workid);
 	}
@@ -52,6 +51,11 @@ public class WorkServiceImpl implements WorkService {
 	public Company com(String workid) {
 		// TODO Auto-generated method stub
 		return dao.com(workid);
+	}
+	@Override
+	public List<Work> seide(String workid) {
+		// TODO Auto-generated method stub
+		return dao.side(workid);
 	}
 
 }

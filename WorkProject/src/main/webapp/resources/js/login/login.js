@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
             .then(result => {
                 if (result === "ok") {
                     window.location="/work";
-                } else if(result === "fail"){
+                } else{
                     alert("아이디와 비밀번호를 확인하시오.");
                 } 
             });

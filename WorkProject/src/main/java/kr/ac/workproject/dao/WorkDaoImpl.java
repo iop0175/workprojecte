@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.workproject.model.Company;
-import kr.ac.workproject.model.VipWork;
 import kr.ac.workproject.model.Work;
 @Repository
 public class WorkDaoImpl implements WorkDao {
@@ -28,12 +27,12 @@ public class WorkDaoImpl implements WorkDao {
 		
 	}
 	@Override
-	public List<VipWork> WorkVipList() {
+	public List<Work> WorkVipList() {
 		// TODO Auto-generated method stub
 		return sql.selectList("work.vipList");
 	}
 	@Override
-	public void vipadd(VipWork vipwork) {
+	public void vipadd(Work vipwork) {
 		sql.insert("work.vipadd",vipwork);
 		
 	}
@@ -43,14 +42,19 @@ public class WorkDaoImpl implements WorkDao {
 		return sql.selectList("work.myWork", comName);
 	}
 	@Override
-	public List<Work> view(String workid) {
+	public Work view(String workid) {
 		// TODO Auto-generated method stub
-		return sql.selectList("work.view", workid);
+		return sql.selectOne("work.view", workid);
 	}
 	@Override
 	public Company com(String workid) {
 		// TODO Auto-generated method stub
 		return sql.selectOne("work.com",workid);
+	}
+	@Override
+	public List<Work> side(String workid) {
+		// TODO Auto-generated method stub
+		return sql.selectList("work.side",workid);
 	}
 
 
