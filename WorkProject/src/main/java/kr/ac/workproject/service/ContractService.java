@@ -15,4 +15,6 @@ public interface ContractService {
 
 	void fianlcon(Contract contract);
 
+	Contract view(String workNum);
+
 }

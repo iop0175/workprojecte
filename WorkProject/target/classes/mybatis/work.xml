@@ -6,18 +6,39 @@
 	<select id="worklist" resultType="work">
 		SELECT *
 		FROM (
-		SELECT *
-		FROM comwork
-		WHERE vip_num is null
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMWORK.vip_num IS NULL
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
-		WHERE ROWNUM &lt;= 10
+		WHERE
+		ROWNUM &lt;= 11
+
 	</select>
 	<select id="myWork" resultType="work">
 		SELECT *
 		FROM (
-		SELECT work_num,work_name,
-		work_detailed, UPLOAD_DATE, UPLOAD_NAME, views, VIEWS_COM
+		SELECT
+		work_num,work_name,
+		work_detailed, UPLOAD_DATE, UPLOAD_NAME, views,
+		VIEWS_COM
 		FROM COMWORK
 		WHERE COM_NAME = #{comName}
 		)
@@ -26,24 +47,65 @@
 	<select id="vipList" resultType="work">
 		SELECT *
 		FROM (
-		SELECT *
-		FROM comwork
-		WHERE vip_num is not null
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMWORK.main_img_name,
+		COMWORK.bener_img_name,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMWORK.vip_num IS NOT NULL
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
-		WHERE ROWNUM &lt;= 10
+		WHERE
+		ROWNUM &lt;= 11
 	</select>
 	<select id="searchList" resultType="work">
-		 SELECT *
-    FROM (
-        SELECT *
-        FROM comwork
-        WHERE WORK_NAME LIKE '%' || #{item} || '%'
-           OR WORK_FIELD LIKE '%' || #{item} || '%'
-           OR COM_NAME LIKE '%' || #{item} || '%'
-        ORDER BY DBMS_RANDOM.VALUE
-    )
-    WHERE ROWNUM &lt;= 12
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMWORK.main_img_name,
+		COMWORK.bener_img_name,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE WORK_NAME LIKE '%' || #{item} || '%'
+		OR WORK_FIELD LIKE
+		'%' || #{item} || '%'
+		OR COM_NAME LIKE '%' || #{item} || '%'
+		ORDER BY
+		DBMS_RANDOM.VALUE
+		)
+		WHERE ROWNUM &lt;= 12
 	</select>
 	<insert id="add">
 		INSERT INTO COMWORK (
@@ -51,7 +113,7 @@
 		work_detailed, work_person, work_region,
 		work_field, work_date,
 		work_pay, com_num, com_name, work_plan,
-		work_requirements,upload_date,upload_name,situation
+		work_requirements,upload_date,upload_name,situation,work_exregion
 		)
 		VALUES (
 		SEQ_WORK.NEXTVAL,
@@ -59,7 +121,8 @@
 		#{workRegion},
 		#{workField}, #{workDate}, #{workPay}, #{comNum},
 		#{comName},
-		#{workPlan}, #{workRequirements},SYSDATE,#{uploadName},#{situation}
+		#{workPlan},
+		#{workRequirements},SYSDATE,#{uploadName},#{situation},#{workExregion}
 		)
 	</insert>
 	<insert id="vipadd">
@@ -68,7 +131,7 @@
 		work_detailed, work_person, work_region,
 		work_field, work_date,
 		work_pay, com_num, com_name, work_plan,
-		work_requirements,main_img_name,bener_img_name,upload_date,upload_name,vip_num
+		work_requirements,main_img_name,bener_img_name,upload_date,upload_name,vip_num,work_exregion
 		)
 		VALUES (
 		SEQ_WORK.NEXTVAL, #{workName}, #{workDetailed},
@@ -78,16 +141,17 @@
 		#{comNum},
 		#{comName},
 		#{workPlan},
-		#{workRequirements},#{mainImgName},#{benerImgName},SYSDATE,#{uploadName},#{vipNum}
+		#{workRequirements},#{mainImgName},#{benerImgName},SYSDATE,#{uploadName},#{vipNum},#{workExregion}
 		)
 	</insert>
 	<select id="view" resultType="work">
 		SELECT *
 		FROM (
-		SELECT work_num,work_name,
+		SELECT
+		work_num,work_name,
 		work_detailed, UPLOAD_DATE, views,VIEWS_COM,
 		WORK_PERSON,WORK_FIELD,WORK_PAY
-		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
+		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME,WORK_EXREGION
 		FROM COMWORK
 		WHERE work_num =
 		#{workid}
@@ -96,16 +160,20 @@
 	<select id="side" resultType="work">
 		SELECT *
 		FROM (
-		SELECT work_num,work_name,
+		SELECT
+		work_num,work_name,
 		work_detailed, UPLOAD_DATE, views,VIEWS_COM,
 		WORK_PERSON,WORK_FIELD,WORK_PAY
 		WORK_PLAN,WORK_REGION,WORK_DATE,COM_NAME
 		FROM COMWORK
-		WHERE work_field LIKE '%' || (SELECT work_field FROM comwork WHERE work_num = #{workid}) || '%'
+		WHERE work_field
+		LIKE '%' || (SELECT work_field FROM comwork WHERE work_num =
+		#{workid}) || '%'
 		AND work_num &lt;= #{workid})
 	</select>
 	<select id="com" resultType="company">
-		SELECT * FROM COMPANY WHERE  COMNUM = (SELECT COM_NUM FROM COMWORK WHERE
+		SELECT * FROM COMPANY WHERE COMNUM =
+		(SELECT COM_NUM FROM COMWORK WHERE
 		work_num = #{workid})
 	</select>
 </mapper>

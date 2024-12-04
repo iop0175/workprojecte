@@ -9,6 +9,7 @@ private String workName;
 private String workDetailed;
 private String workPerson;
 private String workRegion;
+private String workExregion;
 private String workField;
 private Date workDate;
 private String workPay;
@@ -25,50 +26,7 @@ private int vipNum;
 private String mainImgName;
 private String benerImgName;
 private String situation;
-
-public String getKeyword() {
-	return keyword;
-}
-public void setKeyword(String keyword) {
-	this.keyword = keyword;
-}
-
-public String getMainImgName() {
-	return mainImgName;
-}
-public void setMainImgName(String mainImgName) {
-	this.mainImgName = mainImgName;
-}
-public String getBenerImgName() {
-	return benerImgName;
-}
-public void setBenerImgName(String benerImgName) {
-	this.benerImgName = benerImgName;
-}
-public Date getUploadDate() {
-	return uploadDate;
-}
-public void setUploadDate(Date uploadDate) {
-	this.uploadDate = uploadDate;
-}
-public String getUploadName() {
-	return uploadName;
-}
-public void setUploadName(String uploadName) {
-	this.uploadName = uploadName;
-}
-public Long getViews() {
-	return views;
-}
-public void setViews(Long views) {
-	this.views = views;
-}
-public Long getViewsCom() {
-	return viewsCom;
-}
-public void setViewsCom(Long viewsCom) {
-	this.viewsCom = viewsCom;
-}
+private String comLogo;
 public String getWorkNum() {
 	return workNum;
 }
@@ -99,13 +57,24 @@ public String getWorkRegion() {
 public void setWorkRegion(String workRegion) {
 	this.workRegion = workRegion;
 }
+public String getWorkExregion() {
+	return workExregion;
+}
+public void setWorkExregion(String workExregion) {
+	this.workExregion = workExregion;
+}
 public String getWorkField() {
 	return workField;
 }
 public void setWorkField(String workField) {
 	this.workField = workField;
 }
-
+public Date getWorkDate() {
+	return workDate;
+}
+public void setWorkDate(Date workDate) {
+	this.workDate = workDate;
+}
 public String getWorkPay() {
 	return workPay;
 }
@@ -124,13 +93,11 @@ public String getComName() {
 public void setComName(String comName) {
 	this.comName = comName;
 }
-public String getQuery() {
-	String query = "";
-	
-	if(keyword != null)
-		query += "&keyword=" + keyword;
-	
-	return query;
+public String getKeyword() {
+	return keyword;
+}
+public void setKeyword(String keyword) {
+	this.keyword = keyword;
 }
 public String getWorkPlan() {
 	return workPlan;
@@ -144,11 +111,29 @@ public String getWorkRequirements() {
 public void setWorkRequirements(String workRequirements) {
 	this.workRequirements = workRequirements;
 }
-public Date getWorkDate() {
-	return workDate;
+public Date getUploadDate() {
+	return uploadDate;
 }
-public void setWorkDate(Date workDate) {
-	this.workDate = workDate;
+public void setUploadDate(Date uploadDate) {
+	this.uploadDate = uploadDate;
+}
+public String getUploadName() {
+	return uploadName;
+}
+public void setUploadName(String uploadName) {
+	this.uploadName = uploadName;
+}
+public Long getViews() {
+	return views;
+}
+public void setViews(Long views) {
+	this.views = views;
+}
+public Long getViewsCom() {
+	return viewsCom;
+}
+public void setViewsCom(Long viewsCom) {
+	this.viewsCom = viewsCom;
 }
 public int getVipNum() {
 	return vipNum;
@@ -156,12 +141,29 @@ public int getVipNum() {
 public void setVipNum(int vipNum) {
 	this.vipNum = vipNum;
 }
+public String getMainImgName() {
+	return mainImgName;
+}
+public void setMainImgName(String mainImgName) {
+	this.mainImgName = mainImgName;
+}
+public String getBenerImgName() {
+	return benerImgName;
+}
+public void setBenerImgName(String benerImgName) {
+	this.benerImgName = benerImgName;
+}
 public String getSituation() {
 	return situation;
 }
 public void setSituation(String situation) {
 	this.situation = situation;
 }
-
+public String getComLogo() {
+	return comLogo;
+}
+public void setComLogo(String comLogo) {
+	this.comLogo = comLogo;
+}
 
 }

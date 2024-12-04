@@ -12,6 +12,20 @@ public class Contract {
 	private Long vendorPrice;
 	private String vendorNum;
 	private String info;
+	private String buyer_master;
+	private String vendor_master;
+	public String getBuyer_master() {
+		return buyer_master;
+	}
+	public void setBuyer_master(String buyer_master) {
+		this.buyer_master = buyer_master;
+	}
+	public String getVendor_master() {
+		return vendor_master;
+	}
+	public void setVendor_master(String vendor_master) {
+		this.vendor_master = vendor_master;
+	}
 	public String getContractId() {
 		return contractId;
 	}

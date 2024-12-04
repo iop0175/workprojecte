@@ -28,15 +28,18 @@
 	<insert id="fianlcon">
 		<if test="matNum == null">
 			INSERT INTO contract
-			(contract_id,buyer_id,vendor_id,buyer_comname,vendor_comname,work_num,buyer_price,vendor_price,vendor_num,info)
+			(contract_id,buyer_id,vendor_id,buyer_comname,vendor_comname,work_num,buyer_price,vendor_price,vendor_num,info,buyer_master,vendor_master)
 			VALUES
-			(SEQ_CON.NEXTVAL,#{buyerId},#{vendorId},#{buyerComname},#{vendorComname},#{workNum},#{vendorPrice},#{vendorPrice},#{vendorNum},#{info})
+			(SEQ_CON.NEXTVAL,#{buyerId},#{vendorId},#{buyerComname},#{vendorComname},#{workNum},#{vendorPrice},#{vendorPrice},#{vendorNum},#{info},(SELECT tel from MYDATE WHERE ID =#{buyerId}),(SELECT tel from MYDATE WHERE ID =#{vendorId}))
 		</if>
 		<if test="workNum == null">
 			INSERT INTO contract
-			(contract_id,buyer_id,vendor_id,buyer_comname,vendor_comname,mat_num,buyer_price,vendor_price,vendor_num,info)
+			(contract_id,buyer_id,vendor_id,buyer_comname,vendor_comname,mat_num,buyer_price,vendor_price,vendor_num,info,buyer_master,vendor_master)
 			VALUES
-			(SEQ_CON.NEXTVAL,#{buyerId},#{vendorId},#{buyerComname},#{vendorComname},#{matNum},#{vendorPrice},#{vendorPrice},#{vendorNum},#{info})
+			(SEQ_CON.NEXTVAL,#{buyerId},#{vendorId},#{buyerComname},#{vendorComname},#{matNum},#{vendorPrice},#{vendorPrice},#{vendorNum},#{info},(SELECT tel from MYDATE WHERE ID =#{buyerId}),(SELECT tel from MYDATE WHERE ID =#{vendorId}))
 		</if>
 	</insert>
+	<select id="view" resultType="contract">
+		SELECT * FROM CONTRACT WHERE WORK_NUM = #{workNum} 
+	</select>
 </mapper>

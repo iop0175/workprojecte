@@ -31,5 +31,10 @@ public class ContractDaoImpl implements ContractDao {
 		sql.insert("contract.fianlcon", contract);
 		
 	}
+	@Override
+	public Contract view(String workNum) {
+		// TODO Auto-generated method stub
+		return sql.selectOne("contract.view", workNum);
+	}
 
 }

@@ -132,8 +132,8 @@
 				<div class="title_work">작업위치</div>
 				<div id="areaContent">
 					<div>작업지역</div>
-					<div>${list.workRegion}</div>
-					<a href="https://map.kakao.com/?q=${list.workRegion}" target="_blank"> <span> <svg
+					<div>${list.workRegion}  <span>${list.workExregion}</span></div>
+					<a href="https://map.kakao.com/?q=${list.workRegion} ${list.workExregion}" target="_blank"> <span> <svg
 								xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
 								viewbox="0 0 30 13" fill="none">
                                     <path
@@ -165,8 +165,8 @@
 						<div>comHome</div>
 						<div>주소</div>
 						<div>${com.comregion}</div>
-						<div id="comBoxLogo">logo</div>
-						<a href="" id="comBoxComView">기업정보 보기</a>
+						<div id="comBoxLogo"><img class="comimg" alt="" src="/upload/ComLogo/${com.comLogo}"></div>
+						<a href="/company/view/${com.comname}" id="comBoxComView">기업정보 보기</a>
 					</div>
 
 				</div>

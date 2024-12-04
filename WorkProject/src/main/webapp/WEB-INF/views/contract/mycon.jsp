@@ -31,11 +31,17 @@
                     </span>
                     <input type="text" id="serach" name="serach">
                 </div>
-                <div class="login">
-                    <a href="login">로그인</a>
-                    |
-                    <a href="signup">회원가입</a>
-                </div>
+                <c:if test="${sessionScope.mydate ==  null}">
+				<div class="login">
+					<a href="/login">로그인</a> | <a href="/signup">회원가입</a>
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.mydate !=  null}">
+				<div class="login">
+					<a href="/mypage/${sessionScope.mydate.id}">${sessionScope.mydate.id}</a>
+					| <a href="/logout">로그아웃</a>
+				</div>
+			</c:if>
             </div>
             <div class="navbar" id="nav">
                 <div class="manu">

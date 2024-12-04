@@ -26,12 +26,42 @@ public class CompanyController {
 	final String path = "company/";
 
 	@GetMapping("/major")
-	String major() {
+	String major(Model model) {
+		List<Work> list = service.workListmajor();
+		model.addAttribute("list", list);
+		List<Work> Viplist = service.workVipListmajor();
+		if (Viplist.size() > 1) {
+			Work item = Viplist.get(1);
+			Viplist.remove(item);
+			model.addAttribute("vipcol", item);	
+			model.addAttribute("viplist", Viplist);
+		}else if (Viplist.size() < 1) {
+			model.addAttribute("vipcol", null);	
+			model.addAttribute("viplist", null);
+		}else {
+			model.addAttribute("vipcol", Viplist);
+			model.addAttribute("viplist", null);
+		}
 		return path + "major";
 	}
 
 	@GetMapping("/small")
-	String small() {
+	String small(Model model) {
+		List<Work> list = service.workListsmall();
+		model.addAttribute("list", list);
+		List<Work> Viplist = service.workVipListsmall();
+		if (Viplist.size() > 1) {
+			Work item = Viplist.get(1);
+			Viplist.remove(item);
+			model.addAttribute("vipcol", item);	
+			model.addAttribute("viplist", Viplist);
+		}else if (Viplist.size() < 1) {
+			model.addAttribute("vipcol", null);	
+			model.addAttribute("viplist", null);
+		}else {
+			model.addAttribute("vipcol", Viplist);
+			model.addAttribute("viplist", null);
+		}
 		return path + "small";
 	}
 
@@ -75,9 +105,9 @@ public class CompanyController {
 	}
 	@ResponseBody
 	@GetMapping("/checkcon")
-	int comBrn(Company company,HttpSession session) {
+	Long comBrn(Company company,HttpSession session) {
 		Mydate mydate = (Mydate) session.getAttribute("mydate");
-		int comBrn = service.comBrn(mydate.getComName());
+		Long comBrn =  service.comBrn(mydate.getComName());
 		return comBrn;
 		
 		
@@ -106,5 +136,50 @@ public class CompanyController {
 		signcom.setComname(mydate.getComName());
 		service.delcom(signcom);
 		return "ok";
+	}
+	@GetMapping("/searchcount/{field}")
+	@ResponseBody
+	int search(@PathVariable String field) {
+		int fieldsearch = service.fieldsear(field);
+		return fieldsearch;
+	}
+	@GetMapping("/field/list/{field}")
+	String fieldList(@PathVariable String field,Model model) {
+		List<Work> list = service.fieldList(field);
+		model.addAttribute("list", list);
+		return path+"comwork";
+	}
+	@GetMapping("/field/viplist/{field}")
+	String fieldVipList(@PathVariable String field,Model model) {
+		List<Work> vipList = service.fieldVipList(field);
+		if (vipList.size() == 1) {
+			model.addAttribute("vipcol", vipList);
+			
+		}else if (vipList.size() > 1) {
+			Work item = vipList.get(1);
+			model.addAttribute("vipcol", item);
+			vipList.remove(item);
+			model.addAttribute("viplist", vipList);
+		}else {
+			model.addAttribute("vipcol", null);
+			model.addAttribute("viplist", null);
+		}
+		return path + "vipcomwork";
+	}
+	@GetMapping("/view/{company}")
+	String view(@PathVariable String company,Model model) {
+		Company list = service.view(company);
+		model.addAttribute("list", list);
+		return path + "mycompany";
+	}
+	@GetMapping("/workemp")
+	String workemp(HttpSession session,Model model) {
+		Mydate mydate = (Mydate) session.getAttribute("mydate");
+		String comname = mydate.getComName();
+		List<Work> work = service.mywork(comname);
+		List<Signcom> signcom = service.mysign(comname);
+		model.addAttribute("work", work);
+		model.addAttribute("signcom", signcom);
+		return path + "worksign";
 	}
 }

@@ -15,4 +15,6 @@ public interface ContractDao {
 
 	void fianlcon(Contract contract);
 
+	Contract view(String workNum);
+
 }

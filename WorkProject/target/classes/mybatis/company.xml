@@ -12,24 +12,60 @@
 	<select id="cityList" resultType="work">
 		SELECT *
 		FROM (
-		SELECT *
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMPANY.COM_LOGO as com_logo
 		FROM COMWORK
-		WHERE WORK_REGION = #{cityName}
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE WORK_REGION = #{cityName} and COMWORK.vip_num IS NULL
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
-		WHERE ROWNUM &lt;= 10
+		WHERE ROWNUM &lt;= 11
 	</select>
 	<select id="vipcityList" resultType="work">
 		SELECT *
 		FROM (
-		SELECT *
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMWORK.main_img_name,
+		COMWORK.bener_img_name,
+		COMPANY.COM_LOGO as com_logo
 		FROM COMWORK
-		WHERE WORK_REGION = #{vipCityName} and vip_num = 2
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMWORK.WORK_REGION = #{vipCityName} and COMWORK.vip_num IS NOT NULL
 		ORDER BY SYS.DBMS_RANDOM.RANDOM()
 		)
-		WHERE ROWNUM &lt;= 10
+		WHERE ROWNUM &lt;= 11
 	</select>
-	<select id="comBrn" resultType="Integer">
+	<select id="comBrn" resultType="Long">
 		SELECT combrn FROM COMPANY WHERE COMNAME = #{comName}
 	</select>
 	<select id="mycom" resultType="company">
@@ -43,4 +79,184 @@
 		DELETE FROM signcom 
 		WHERE id = #{id}
 	</delete>
+	<select id="fieldsear" resultType="Integer">
+		SELECT COUNT(*) from COMWORK WHERE WORK_FIELD LIKE '%' || #{field} || '%'
+	</select>
+	<select id="fieldList" resultType="work">
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMWORK.WORK_FIELD = #{field} and COMWORK.vip_num IS NULL
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="fieldVipList" resultType="work">
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMWORK.main_img_name,
+		COMWORK.bener_img_name,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMWORK.WORK_FIELD = #{field} and COMWORK.vip_num is not null
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="view" resultType="company">
+		SELECT * FROM COMPANY WHERE COMNAME = #{company}
+	</select>
+	<select id="listMajor" resultType="work">
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMPANY.STOCK = '상장' and COMWORK.vip_num IS NULL
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="listMajorVip" resultType="work">
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMWORK.main_img_name,
+		COMWORK.bener_img_name,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMPANY.STOCK = '상장' and COMWORK.vip_num is not null
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="workListsmall" resultType="work">
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMPANY.STOCK = '비상장' and COMWORK.vip_num IS NULL
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="workVipListsmall" resultType="work">
+		SELECT *
+		FROM (
+		SELECT
+		COMWORK.work_num,
+		COMWORK.work_name,
+		COMWORK.work_detailed,
+		COMWORK.work_person,
+		COMWORK.work_region,
+		COMWORK.work_field,
+		COMWORK.work_date,
+		COMWORK.work_pay,
+		COMWORK.com_num,
+		COMWORK.com_name,
+		COMWORK.work_plan,
+		COMWORK.work_requirements,
+		COMWORK.upload_date,
+		COMWORK.upload_name,
+		COMWORK.situation,
+		COMWORK.main_img_name,
+		COMWORK.bener_img_name,
+		COMPANY.COM_LOGO as com_logo
+		FROM COMWORK
+		JOIN COMPANY ON (COMWORK.COM_NUM = COMPANY.comnum)
+		WHERE COMPANY.STOCK = '비상장' and COMWORK.vip_num is not null
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="mywork" resultType="work">
+		SELECT * FROM COMWORK WHERE COM_NAME = #{comname}
+	</select>
+	<select id="mysign" resultType="signcom">
+		SELECT * FROM mydate WHERE COM_NAME = #{comname}
+	</select>
 </mapper>

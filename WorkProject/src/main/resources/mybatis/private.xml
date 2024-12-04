@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="private">
+	<insert id="add">
+		INSERT INTO PRIVATE (PRI_NUM,PRI_HISTORY,PRI_DATE,PRI_OLD,PRI_GENDER,PRI_REGION,ID
+		,UPLOAD_DATE,PRI_TEL,PRI_FIELD,PRI_NAME) 
+		VALUES(SEQ_PRI.nextVal,#{priHistory},#{priDate},#{priOld},#{priGender}
+		,#{priRegion},#{id},SYSDATE,#{priTel},#{priField},#{priName})
+	</insert>
+	<select id="list" resultType="private">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM PRIVATE
+		WHERE vip_num is null
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 10
+	</select>
+	<select id="viplist" resultType="private">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM PRIVATE
+		WHERE vip_num is not null
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 10
+	</select>
+	<select id="cityList" resultType="private">
+		SELECT *
+		FROM (
+		SELECT
+		*
+		FROM PRIVATE
+		WHERE PRI_REGION = #{cityName} and vip_num IS NULL
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="vipcityList" resultType="private">
+		SELECT *
+		FROM (
+		SELECT
+		*
+		FROM PRIVATE
+		WHERE PRI_REGION = #{vipCityName} and vip_num IS NOT NULL
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="cityCount" resultType="Integer">
+		SELECT
+		(SELECT COUNT(*) FROM
+		PRIVATE WHERE PRI_REGION = #{cityName}) as cityCount
+		FROM dual
+	</select>
+	<select id="fieldsear" resultType="Integer">
+		SELECT COUNT(*) from PRIVATE WHERE PRI_REGION LIKE '%' || #{field} || '%'
+	</select>
+	<select id="fieldList" resultType="private">
+		SELECT *
+		FROM (
+		SELECT
+		*
+		FROM PRIVATE
+		WHERE PRI_REGION = #{field} and vip_num IS NULL
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+	<select id="fieldVipList" resultType="private">
+		SELECT *
+		FROM (
+		SELECT
+		*
+		FROM PRIVATE
+		WHERE PRI_REGION = #{field} and vip_num is not null
+		ORDER BY SYS.DBMS_RANDOM.RANDOM()
+		)
+		WHERE ROWNUM &lt;= 11
+	</select>
+</mapper>

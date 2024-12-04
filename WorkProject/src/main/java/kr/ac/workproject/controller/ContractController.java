@@ -32,7 +32,7 @@ String vendor(Vendor vendor,HttpSession session ,@PathVariable String workNum ) 
 	vendor.setComName(mydate.getComName());
 	vendor.setWorkNum(workNum);
 	service.vendor(vendor);
-	return path+"vendor";
+	return "redirect:../../work";
 }
 @GetMapping("/my/{workNum}")
 String mycon(HttpSession session,Model model,@PathVariable String workNum) {
@@ -47,7 +47,11 @@ String fianl(@PathVariable String vendorNum,HttpSession session,Contract contrac
 	 Mydate mydate = (Mydate) session.getAttribute("mydate");
 	 contract.setBuyerComname(mydate.getComName());
 	 contract.setBuyerId(mydate.getId());
-	 contract.setInfo(vendor.getInfo());
+	 if (vendor.getInfo() == null) {
+		 contract.setInfo(vendor.getPay()+"가 적정가 인듯합니다.");
+	}else {
+		 contract.setInfo(vendor.getInfo());
+	}
 	 contract.setVendorComname(vendor.getComName());
 	 contract.setVendorId(vendor.getId());
 	 contract.setVendorNum(vendor.getVendorNum());
@@ -60,4 +64,10 @@ String fianl(@PathVariable String vendorNum,HttpSession session,Contract contrac
 	 service.fianlcon(contract);
 	return "ok";
 }
+@GetMapping("/view/{workNum}")
+String view(@PathVariable String workNum,Model model) {
+	Contract contract = service.view(workNum);
+	model.addAttribute("item", contract);
+	return path +"view";
+};
 }

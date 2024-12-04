@@ -79,7 +79,7 @@ public class LoginController {
 	@PostMapping("/comadd")
 	String comadd(Company item,HttpSession session,MultipartFile comlogo) {
 		Mydate mydate = (Mydate) session.getAttribute("mydate");
-		String comname = item.getCeoname();
+		String comname = item.getComname();
 		if (comlogo != null && comlogo.getSize() > 0) {
 			String logoImgName = comname + "_Logo" + comlogo.getOriginalFilename();
 			try {
@@ -93,6 +93,7 @@ public class LoginController {
 		item.setId(mydate.getId());
 		
 		service.comadd(item);
+		mydate.setComName(item.getComname());
 		return "redirect:.";
 	}
 	@GetMapping("/oldcomadd")
@@ -179,6 +180,7 @@ public class LoginController {
 			payment.setComName(mydate.getComName());
 			payment.setId(mydate.getId());
 			service.addvip(payment);
+			mydate.setVipNum(payment.getVipNum());
 			return "ok";
 		}else {
 			return "fail";

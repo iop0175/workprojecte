@@ -27,6 +27,10 @@
 		(COMNUM,COMNAME,COMJOB,COMREGION,CEONAME,COMBRN,COMDATE,STOCK,COM_LOGO,info,page)
 		VALUES
 		(SEQ_COM.NEXTVAL,#{comname},#{comjob},#{comregion},#{ceoname},#{combrn},#{comdate},#{stock},#{comLogo},#{info},#{page})
+		<selectKey keyProperty="comnum" resultType="String" order="AFTER">
+			SELECT
+			SEQ_COM.currval from dual
+		</selectKey>
 	</insert>
 	<update id="cominput">
 		UPDATE MYDATE 
@@ -52,7 +56,7 @@
 	</update>
 	<insert id="old">
 		INSERT INTO SIGNCOM
-		VALUES(SEQ_SIGN.nextval,${comname},#{id},#{name},#{empnum},#{tel})
+		VALUES(SEQ_SIGN.nextval,#{comname},#{id},#{name},#{empnum},#{tel})
 	</insert>
 	<select id="signcom" resultType="signcom">
 		SELECT * FROM SIGNCOM WHERE COMNAME = #{comName}

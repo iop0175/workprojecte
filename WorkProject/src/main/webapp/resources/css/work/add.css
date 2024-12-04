@@ -520,3 +520,21 @@ div::-webkit-scrollbar {
 #summer p{
     margin-right: 50px;
 }
+#area{
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.area_list_city.selected {
+    background-color: #4caf50; /* 선택된 버튼 색상 */
+    color: white;
+}
+.conteant_img{
+	margin: 50px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    height: 100px;
+}

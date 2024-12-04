@@ -6,7 +6,7 @@ private String comname;
 private String id;
 private String name;
 private String empnum;
-private int tel;
+private String tel;
 public Long getSignNum() {
 	return signNum;
 }
@@ -37,10 +37,10 @@ public String getEmpnum() {
 public void setEmpnum(String empnum) {
 	this.empnum = empnum;
 }
-public int getTel() {
+public String getTel() {
 	return tel;
 }
-public void setTel(int tel) {
+public void setTel(String tel) {
 	this.tel = tel;
 }
 }

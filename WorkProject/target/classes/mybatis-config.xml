@@ -17,6 +17,8 @@
 			alias="vendor" />
 		<typeAlias type="kr.ac.workproject.model.Signcom"
 			alias="signcom" />
+		<typeAlias type="kr.ac.workproject.model.Private"
+			alias="private" />
 	</typeAliases>
 
 	<mappers>
@@ -24,6 +26,7 @@
 		<mapper resource="mybatis/mydate.xml" />
 		<mapper resource="mybatis/company.xml" />
 		<mapper resource="mybatis/contract.xml" />
+		<mapper resource="mybatis/private.xml" />
 	</mappers>
 
 </configuration>

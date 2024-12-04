@@ -15,7 +15,9 @@
 <body>
 	<div class="container">
 		<div class="header" id="nav">
-			<div class="logo">workwat</div>
+			<div class="logo">
+				<a href="/work">workway</a>
+			</div>
 			<div class="serach_box">
 				<span> <svg xmlns="http://www.w3.org/2000/svg" width="30"
 						height="30" fill="currentColor" class="bi bi-search"
@@ -115,7 +117,7 @@
 				<div>주식상장</div>
 				<h1 id="stock">${list.stock}</h1>
 				<div id="page">
-					<a href="/${list.page}">홈페이지 바로가기</a>
+					<a href="//${list.page}" target="_blank">홈페이지 바로가기</a>
 				</div>
 				<div id="cominfoName">회사소개</div>
 				<div id="cominfo">${list.info}</div>

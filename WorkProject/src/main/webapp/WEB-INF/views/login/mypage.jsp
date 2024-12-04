@@ -155,9 +155,14 @@
                     <c:if test="${sessionScope.mydate.comName != null}">
                     <div class="pageButton"><a href="/company/mycompany">COMPANY</a></div>
                     <div class="pageButton"><a href="/company/mycompany/sign">인원 등록 승인</a></div>
-                    <div class="pageButton"><a href="">공고 관리 | 직원 관리</a></div>
+                    <div class="pageButton"><a href="/company/workemp">공고 관리 | 직원 관리</a></div>
                     </c:if>
-                    <div class="pageButton"><a href="/work/add">작업 등록하기</a></div>
+                    <c:if test="${sessionScope.mydate.comName != null}">
+                    	<div class="pageButton"><a href="/work/add">작업 등록하기</a></div>
+                    </c:if>
+                    <c:if test="${sessionScope.mydate.comName == null}">
+                   		<div class="pageButton"><a href="/private/add">개인작업 등록하기</a></div>
+                    </c:if>
                 </div>
             </div>
             <div class="footer"></div>

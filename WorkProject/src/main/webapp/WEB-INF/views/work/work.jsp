@@ -157,28 +157,28 @@
 				</div>
 				<script src="/resources/js/work/slide_show.js"></script>
 			</div>
-			<div class="my_ad">AD</div>
-			<div class="main_ad">AD</div>
+			<div class="my_ad"></div>
+			<div class="main_ad"></div>
 		</div>
 		<div class="title">기업 공고(WW Partners)</div>
 		<div class="product_list">
 			<c:if test="${viplist.size() != null}">
 				<c:if test="${vipcol != null}">
-					<a href="/work/view/${vipcol.workNum}" target="_blank">
-						<div class="vip_col">
+					<div class="vip_col">
+						<a href="/work/view/${vipcol.workNum}" target="_blank">
 							<div class="product_hover_logo">
 								<img class="hover_logo_imgfile" alt=""
-									src="/resources/imges/${vipcol.comName}_logo.png">
+									src="/upload/ComLogo/${vipcol.comLogo}">
 							</div>
 							<div class="product_hover_comname">${vipcol.comName}</div>
-							<div class="porduct_hover_comex">${vipcol.comName}</div>
+							<div class="porduct_hover_comex">${vipcol.workField}</div>
 							<div class="product_hover_job">${vipcol.workName}</div>
 							<div class="product_hover_jobex">${vipcol.workDetailed}</div>
 							<div class="product_hovert_img">
 								<img class="hover_img_img" src="/upload/${vipcol.benerImgName}">
 							</div>
-						</div>
-					</a>
+						</a>
+					</div>
 				</c:if>
 			</c:if>
 			<c:if test="${viplist.size() == null}">
@@ -188,10 +188,10 @@
 							<div class="vip_col">
 								<div class="product_hover_logo">
 									<img class="hover_logo_imgfile" alt=""
-										src="/resources/imges/${vipcol.comName}_logo.png">
+										src="/upload/ComLogo/${vipcol.comLogo}">
 								</div>
 								<div class="product_hover_comname">${vipcol.comName}</div>
-								<div class="porduct_hover_comex">${vipcol.comName}</div>
+								<div class="porduct_hover_comex">${vipcol.workField}</div>
 								<div class="product_hover_job">${vipcol.workName}</div>
 								<div class="product_hover_jobex">${vipcol.workDetailed}</div>
 								<div class="product_hovert_img">
@@ -200,8 +200,6 @@
 							</div>
 						</a>
 					</c:forEach>
-
-
 				</c:if>
 			</c:if>
 			<c:if test="${viplist.size() != null}">
@@ -211,7 +209,7 @@
 							<div class="porduct_data">
 								<div class="product_logo">
 									<img class="logo_imgfile" alt=""
-										src="/upload/${item.comName}_logo.png">
+										src="/upload/ComLogo/${item.comLogo}">
 								</div>
 								<div class="product_comname">${item.comName}</div>
 								<div class="product_job">${item.workName}</div>
@@ -223,10 +221,10 @@
 							<div class="product_hover">
 								<div class="product_hover_logo">
 									<img class="hover_logo_imgfile" alt=""
-										src="/upload/${item.comName}_logo.png">
+										src="/upload/ComLogo/${item.comLogo}">
 								</div>
 								<div class="product_hover_comname">${item.comName}</div>
-								<div class="porduct_hover_comex">sasa</div>
+								<div class="porduct_hover_comex">${item.workField}</div>
 								<div class="product_hover_job">${item.workName}</div>
 								<div class="product_hover_jobex">${item.workDetailed}</div>
 								<div class="product_hovert_img">
@@ -237,12 +235,7 @@
 					</a>
 				</c:forEach>
 			</c:if>
-			<c:if test="${viplist.size() >6}">
-				<div class="product_not">8</div>
-				<div class="product_not">9</div>
-				<div class="product_not">0</div>
-				<div class="product_not">0</div>
-			</c:if>
+			
 		</div>
 		<div class="title">기업 공고</div>
 		<div class="product_list">
@@ -252,11 +245,11 @@
 						<div class="product_not">
 							<div class="n_product_logo">
 								<img class="n_logo_imgfile" alt=""
-									src="/resources/imges/${item.comName}_logo.png">
+									src="/upload/ComLogo/${item.comLogo}">
 							</div>
 							<div class="n_product_comname">${item.comName}</div>
 							<div class="n_product_job">${item.workName}</div>
-							<div class="n_product_jobex">${item.workDetailed}</div>
+							<div class="n_product_jobex">${item.workField}</div>
 						</div>
 					</a>
 				</c:forEach>

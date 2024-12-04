@@ -114,35 +114,72 @@
 					<div id="wwbutton">WW Partners</div>
 				</div>
 				<form method="post" id="conteant" enctype="multipart/form-data">
-					<div class="conteant_item"><p>작업명</p><input type="text" name="workName" oninput="updateProgress()" data-target="muge_comname" class="essential"></div>
-					<div id="summer"><p>작업설명</p><textarea id="summernote" name="workDetailed" oninput="updateProgress()" data-target="muge_comex" class="essential"></textarea></div>
-					<div class="conteant_item"><p>예상 필요인원</p><input type="text" name="workPerson" oninput="updateProgress()" data-target="muge_personnel" class="essential"></div>
-					<div class="conteant_item"><p>작업위치</p><input type="text" name="workRegion" oninput="updateProgress()" data-target="muge_region" class="essential"></div>
-					<div class="conteant_item"><p>작업계획서</p><input type="text" name="workPlan" oninput="updateProgress()" data-target="muge_workplan" class="essential"></div>
+					<div class="conteant_item"><p>작업명</p><input type="text" name="workName" data-target="muge_comname" class="essential"></div>
+					<div id="summer"><p>작업설명</p><textarea id="summernote" name="workDetailed" data-target="muge_comex"></textarea></div>
+					<div class="conteant_item"><p>예상 필요인원</p><input type="text" name="workPerson" data-target="muge_personnel" class="essential"></div>
+					<div class="conteant_item">
+						<p>작업지역</p><input type="text" id="priRegion" name="workRegion" readonly="readonly"  data-target="muge_region"></div>
+					<div id="area">
+						<div class="area_list_city" id="Seoul_list" data-area="서울">
+							<h3 data-area="서울">서 울</h3>
+						</div>
+						<div class="area_list_city" id="Incheon_list" data-area="인천">
+							<h3 data-area="인천">인 천</h3>
+						</div>
+						<div class="area_list_city" id="Busan_list" data-area="부산">
+							<h3 data-area="부산">부 산</h3>
+						</div>
+						<div class="area_list_city" id="Daegu_list" data-area="대구">
+							<h3 data-area="대구">대 구</h3>
+						</div>
+						<div class="area_list_city" id="Gwangju_list" data-area="광주">
+							<h3 data-area="광주">광 주</h3>
+						</div>
+						<div class="area_list_city" id="Daejeon_list" data-area="대전">
+							<h3 data-area="대전">대 전</h3>
+						</div>
+						<div class="area_list_city" id="Ulsan_list" data-area="울산">
+							<h3 data-area="울산">울 산</h3>
+						</div>
+						<div class="area_list_city" id="Sejong_list" data-area="세종">
+							<h3 data-area="세종">세 종</h3>
+						</div>
+						<div class="area_list_city" id="Gyeonggi_list" data-area="경기도">
+							<h3 data-area="경기도">경 기 도</h3>
+						</div>
+						<div class="area_list_city" id="Gangwon_list" data-area="강원도">
+							<h3 data-area="강원도">강 원 도</h3>
+						</div>
+						<div class="area_list_city" id="Chungcheongnam_list" data-area="충청남도">
+							<h3 data-area="충청남도">충청 남도</h3>
+						</div>
+						<div class="area_list_city" id="Chungcheongbuk_list" data-area="충청북도">
+							<h3 data-area="충청북도">충청 북도</h3>
+						</div>
+						<div class="area_list_city" id="Jeollanam_list" data-area="전라남도">
+							<h3 data-area="전라남도">전라 남도</h3>
+						</div>
+						<div class="area_list_city" id="Jeollabuk_list" data-area="전라북도">
+							<h3 data-area="전라북도">전라 북도</h3>
+						</div>
+						<div class="area_list_city" id="Gyeongsangnam_list" data-area="경상남도">
+							<h3 data-area="경상남도">경상 남도</h3>
+						</div>
+						<div class="area_list_city" id="Gyeongsangbuk_list" data-area="경상북도">
+							<h3 data-area="경상북도">경상 북도</h3>
+						</div>
+					</div>
+					<div class="conteant_item"><p>상세위치</p><input type="text" name="workExregion" data-target="muge_region" class="essential"></div>
+					<div class="conteant_item"><p>작업계획서</p><input type="text" name="workPlan" data-target="muge_workplan" class="essential"></div>
 					<div class="conteant_item"><p>작업분야</p><input type="text" name="workField"></div>
 					<div class="conteant_item"><p>예상작업일정</p><input type="date" name="workDate"></div>
 					<div class="conteant_item"><p>필요조건</p><input type="text" name="workRequirements"></div>
 					<div class="conteant_item"><p>예상단가</p><input type="text" name="workPay"></div>
-					<div id="vipMain"><p>메인이미지</p><input type="file" name="mainImg"></div>
-					<div id="vipBener"><p>베너이미지</p><input type="file" name="benerImg"></div>
+					<div class="conteant_img" id="vipMain"><p>메인이미지</p><input type="file" name="mainImg" value=" "></div>
+					<div class="conteant_img" id="vipBener"><p>베너이미지</p><input type="file" name="benerImg" value=" "></div>
 				</form>
 			</div>
 			<div id="side_nav">
-				<div>
-					<div id="adding">
-						<p id="complete">입력 완료까지 <span id="addProgress">0</span>% !</p>
-						<div id="progressbox">
-							<progress id="progress" value="0" max="100" min="0"></progress>
-						</div>
-						<div id="muge">
-							<div id="muge_comname">작업명</div>
-							<div id="muge_comex">작업설명</div>
-							<div id="muge_personnel">예상필요인원</div>
-							<div id="muge_region">작업위치</div>
-							<div id="muge_workplan">작업계획서</div>
-						</div>
-					</div>
-				</div>
 				<button id="submit" form="conteant" type="button">등록하기</button>
 				<div id="savebox">
 					<div id="view">미리보기</div>

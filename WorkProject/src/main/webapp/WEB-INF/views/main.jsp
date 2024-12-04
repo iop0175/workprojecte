@@ -24,8 +24,8 @@
 	<body>
         <div class="animated-title">
             <div id="LOGO">WORK WAY</div>
-            <div id="text">0000000000</div>
-            <div id="text2">0000000000</div>
+            <div id="text">계약에 심플함을 더하다</div>
+            <div id="text2">WORK WAY</div>
             <div class="manu">
                 <div class="a"><a href="work">HOME</a></div>
                 <div class="a"><a href="login">LOGIN</a></div>

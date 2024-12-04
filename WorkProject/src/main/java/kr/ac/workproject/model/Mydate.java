@@ -7,6 +7,7 @@ private String password;
 private String comName;
 private String masterid;
 private int vipNum;
+private String tel;
 public String getId() {
 	return id;
 }
@@ -44,6 +45,12 @@ public int getVipNum() {
 }
 public void setVipNum(int vipNum) {
 	this.vipNum = vipNum;
+}
+public String getTel() {
+	return tel;
+}
+public void setTel(String tel) {
+	this.tel = tel;
 }
 
 

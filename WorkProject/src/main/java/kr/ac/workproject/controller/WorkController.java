@@ -68,10 +68,21 @@ public class WorkController {
 
 	@GetMapping("/search/{item}")
 	String search(@PathVariable String item, Model model) {
-		List<Work> list = service.workList();
-		model.addAttribute("list", list);
+		List<Work> Viplist = service.workVipList();
+		if (Viplist.size() > 1) {
+			Work item1 = Viplist.get(1);
+			Viplist.remove(item1);
+			model.addAttribute("vipcol", item1);	
+			model.addAttribute("viplist", Viplist);
+		}else if (Viplist.size() < 1) {
+			model.addAttribute("vipcol", null);	
+			model.addAttribute("viplist", null);
+		}else {
+			model.addAttribute("vipcol", Viplist);
+			model.addAttribute("viplist", null);
+		}
 		List<Work> searchlist = service.searchList(item);
-		model.addAttribute("searchlist", searchlist);
+		model.addAttribute("list", searchlist);
 		return path + "work";
 	}
 
@@ -86,6 +97,7 @@ public class WorkController {
 		workItem.setComName(mydate.getComName());
 		workItem.setComNum(mydate.getComNum());
 		workItem.setUploadName(mydate.getId());
+		workItem.setSituation("공고중");
 		service.add(workItem);
 		return "redirect:../work";
 	}
@@ -116,6 +128,7 @@ public class WorkController {
 			}
 
 		}
+		vipwork.setSituation("공고중");
 		vipwork.setVipNum(mydate.getVipNum());
 		vipwork.setComName(mydate.getComName());
 		vipwork.setComNum(mydate.getComNum());

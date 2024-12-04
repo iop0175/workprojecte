@@ -31,6 +31,11 @@ public class ContractServiceImpl implements ContractService {
 		dao.fianlcon(contract);
 		
 	}
+	@Override
+	public Contract view(String workNum) {
+		// TODO Auto-generated method stub
+		return dao.view(workNum);
+	}
 
 
 }
